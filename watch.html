@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ video.title }} - Home of Chess Players</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="learn.css'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-users"></i>
+                    <h1>HOME OF CHESS<span>PLAYERS</span></h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="membership.html"><i class="fas fa-id-card"></i> Membership</a></li>
+                        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                        <li class="active"><a href="/learn"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Video Player Section -->
+    <main class="video-player-content">
+        <div class="container">
+            <div class="video-player-container">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <a href="/learn"><i class="fas fa-home"></i> Learn</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="/learn?category={{ video.category }}">{{ video.category }}</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>{{ video.title }}</span>
+                </div>
+                
+                <!-- Video Player -->
+                <div class="video-player-wrapper">
+                    <div class="video-player">
+                        <video id="chess-video" controls poster="{% if video.thumbnail_path %}{{ url_for('static', filename='uploads/' + video.thumbnail_path) }}{% endif %}">
+                            <source src="{{ url_for('static', filename='uploads/' + video.video_path) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <!-- Video Info -->
+                    <div class="video-info-detailed">
+                        <h1>{{ video.title }}</h1>
+                        <div class="video-stats">
+                            <span><i class="fas fa-eye"></i> {{ video.views }} views</span>
+                            <span><i class="fas fa-calendar"></i> {{ video.upload_date.strftime('%B %d, %Y') }}</span>
+                            <span class="difficulty {{ video.difficulty_level|lower }}">{{ video.difficulty_level }}</span>
+                            <span class="duration"><i class="fas fa-clock"></i> {{ video.duration }} minutes</span>
+                        </div>
+                        
+                        <div class="instructor-info">
+                            <div class="instructor-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="instructor-details">
+                                <h3>Instructor: {{ video.instructor_name }}</h3>
+                                <p>Chess Grandmaster with 15+ years of teaching experience</p>
+                            </div>
+                        </div>
+                        
+                        <div class="video-description-detailed">
+                            <h3>Description</h3>
+                            <p>{{ video.description }}</p>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <button class="btn btn-primary" id="like-video">
+                                <i class="far fa-thumbs-up"></i> Like
+                            </button>
+                            <button class="btn btn-outline" id="save-video">
+                                <i class="far fa-bookmark"></i> Save for Later
+                            </button>
+                            <button class="btn btn-outline" id="share-video">
+                                <i class="fas fa-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Videos -->
+                <div class="related-videos">
+                    <h2>Related Lessons</h2>
+                    <div class="related-grid">
+                        {% for related in related_videos %}
+                        <div class="related-card">
+                            <div class="related-thumbnail">
+                                {% if related.thumbnail_path %}
+                                <img src="{{ url_for('static', filename='uploads/' + related.thumbnail_path) }}" alt="{{ related.title }}">
+                                {% else %}
+                                <div class="default-thumbnail">
+                                    <i class="fas fa-chess-board"></i>
+                                </div>
+                                {% endif %}
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="related-info">
+                                <h3>{{ related.title }}</h3>
+                                <div class="related-meta">
+                                    <span>{{ related.instructor_name }}</span>
+                                    <span>{{ related.duration }} min</span>
+                                </div>
+                                <a href="{{ url_for('watch_video', video_id=related.id) }}" class="btn btn-small">Watch Now</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-users"></i>
+                    <h3>HOME OF CHESS<span>PLAYERS</span></h3>
+                    <p>Building community through learning and competition since 2023.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="membership.html">Membership</a></li>
+                            <li><a href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="/learn">Learn</a></li>
+                            <li><a href="tournament.html">Tournaments</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Connect With Us</h4>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                        </div>
+                        <p class="contact-info">
+                            <i class="fas fa-envelope"></i> learn@chessplayers.com<br>
+                            <i class="fas fa-phone"></i> (123) 456-7890
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Home of Chess Players. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="close-mobile-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="membership.html"><i class="fas fa-id-card"></i> Membership</a></li>
+            <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li class="active"><a href="/learn"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+            <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality (same as other pages)
+            // ... (mobile menu code from other pages)
+            
+            // Video interaction
+            const videoElement = document.getElementById('chess-video');
+            const likeBtn = document.getElementById('like-video');
+            const saveBtn = document.getElementById('save-video');
+            const shareBtn = document.getElementById('share-video');
+            
+            likeBtn.addEventListener('click', function() {
+                this.classList.toggle('liked');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('liked')) {
+                    icon.className = 'fas fa-thumbs-up';
+                    this.innerHTML = '<i class="fas fa-thumbs-up"></i> Liked';
+                } else {
+                    icon.className = 'far fa-thumbs-up';
+                    this.innerHTML = '<i class="far fa-thumbs-up"></i> Like';
+                }
+            });
+            
+            saveBtn.addEventListener('click', function() {
+                this.classList.toggle('saved');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('saved')) {
+                    icon.className = 'fas fa-bookmark';
+                    this.innerHTML = '<i class="fas fa-bookmark"></i> Saved';
+                } else {
+                    icon.className = 'far fa-bookmark';
+                    this.innerHTML = '<i class="far fa-bookmark"></i> Save for Later';
+                }
+            });
+            
+            shareBtn.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.title,
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Link copied to clipboard!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

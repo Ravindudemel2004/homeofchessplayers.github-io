@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership - Organization Website</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-users"></i>
+                    <h1>HOME OF CHESS<span>PLAYERS</span></h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="active"><a href="membership.html"><i class="fas fa-id-card"></i> Membership</a></li>
+                        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                        <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Membership Hero Section -->
+    <section class="membership-hero">
+        <div class="container">
+            <div class="membership-hero-content">
+                <h1>Join Our Chess Community</h1>
+                <p>Become a member today and unlock exclusive benefits, tournaments, and resources</p>
+                <a href="#membership-plans" class="btn btn-primary">View Membership Plans</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="membership-main-content">
+        <div class="container">
+            <!-- Membership Benefits Section -->
+            <section class="membership-section">
+                <div class="section-header">
+                    <h2>Why Become a Member?</h2>
+                    <div class="section-divider"></div>
+                    <p>Experience the full benefits of our chess community</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Exclusive Tournaments</h3>
+                        <p>Access to members-only tournaments with cash prizes and ratings</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Learning Resources</h3>
+                        <p>Premium tutorials, video lessons, and strategy guides from experts</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community Access</h3>
+                        <p>Connect with players of all levels in our forums and social events</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Event Discounts</h3>
+                        <p>Save up to 50% on workshops, seminars, and special events</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Rating Tracking</h3>
+                        <p>Official rating system to track your progress and compete fairly</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3>Achievement System</h3>
+                        <p>Earn badges and recognition for milestones and tournament wins</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Membership Plans Section -->
+            <section class="membership-section plans-section" id="membership-plans">
+                <div class="section-header">
+                    <h2>Choose Your Membership Plan</h2>
+                    <div class="section-divider"></div>
+                    <p>Select the plan that best fits your chess journey</p>
+                </div>
+                
+                <div class="plans-grid">
+                    <!-- Free Plan -->
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Free</h3>
+                            <div class="plan-price">
+                                <span class="currency">$</span>
+                                <span class="amount">0</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="plan-description">Basic access to get started</p>
+                        </div>
+                        
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Access to public forums</li>
+                                <li><i class="fas fa-check"></i> Monthly newsletter</li>
+                                <li><i class="fas fa-check"></i> Basic learning materials</li>
+                                <li><i class="fas fa-check"></i> Public tournament viewing</li>
+                                <li><i class="fas fa-times"></i> Members-only tournaments</li>
+                                <li><i class="fas fa-times"></i> Premium tutorials</li>
+                                <li><i class="fas fa-times"></i> Event discounts</li>
+                                <li><i class="fas fa-times"></i> Official rating</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-footer">
+                            <a href="#" class="btn btn-outline">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Basic Plan -->
+                    <div class="plan-card popular">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3>Basic</h3>
+                            <div class="plan-price">
+                                <span class="currency">$</span>
+                                <span class="amount">9.99</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="plan-description">Perfect for casual players</p>
+                        </div>
+                        
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Everything in Free</li>
+                                <li><i class="fas fa-check"></i> Access to members-only tournaments</li>
+                                <li><i class="fas fa-check"></i> Intermediate tutorials</li>
+                                <li><i class="fas fa-check"></i> 25% event discounts</li>
+                                <li><i class="fas fa-check"></i> Official rating tracking</li>
+                                <li><i class="fas fa-check"></i> Community forums</li>
+                                <li><i class="fas fa-times"></i> Advanced strategy videos</li>
+                                <li><i class="fas fa-times"></i> Personal coaching sessions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-footer">
+                            <a href="#" class="btn btn-primary">Choose Plan</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Premium Plan -->
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Premium</h3>
+                            <div class="plan-price">
+                                <span class="currency">$</span>
+                                <span class="amount">19.99</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="plan-description">For serious competitors</p>
+                        </div>
+                        
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Everything in Basic</li>
+                                <li><i class="fas fa-check"></i> Advanced strategy videos</li>
+                                <li><i class="fas fa-check"></i> 50% event discounts</li>
+                                <li><i class="fas fa-check"></i> Monthly personal coaching session</li>
+                                <li><i class="fas fa-check"></i> Tournament analysis reviews</li>
+                                <li><i class="fas fa-check"></i> Priority tournament registration</li>
+                                <li><i class="fas fa-check"></i> Exclusive masterclass access</li>
+                                <li><i class="fas fa-check"></i> Physical welcome kit</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-footer">
+                            <a href="#" class="btn btn-primary">Choose Plan</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Annual Plan -->
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Annual</h3>
+                            <div class="plan-price">
+                                <span class="currency">$</span>
+                                <span class="amount">199</span>
+                                <span class="period">/year</span>
+                            </div>
+                            <p class="plan-description">Best value - Save 20%</p>
+                        </div>
+                        
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Everything in Premium</li>
+                                <li><i class="fas fa-check"></i> 2 extra coaching sessions</li>
+                                <li><i class="fas fa-check"></i> Free tournament entry (up to 5)</li>
+                                <li><i class="fas fa-check"></i> Premium chess set</li>
+                                <li><i class="fas fa-check"></i> Member of the year recognition</li>
+                                <li><i class="fas fa-check"></i> VIP event invitations</li>
+                                <li><i class="fas fa-check"></i> Dedicated support</li>
+                                <li><i class="fas fa-check"></i> Early access to new features</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-footer">
+                            <a href="#" class="btn btn-primary">Choose Plan</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="plan-note">
+                    <p><i class="fas fa-info-circle"></i> All plans come with a 30-day money-back guarantee. No questions asked.</p>
+                </div>
+            </section>
+            
+            <!-- Membership Testimonials -->
+            <section class="membership-section testimonials-section">
+                <div class="section-header">
+                    <h2>What Our Members Say</h2>
+                    <div class="section-divider"></div>
+                    <p>Join thousands of satisfied chess enthusiasts</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Joining this community transformed my chess game. The resources and tournaments helped me improve from beginner to club level in just 6 months!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Member">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <p>Basic Member • 1 year</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The premium tutorials and coaching sessions are worth every penny. My rating increased by 300 points since joining the premium plan."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Member">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Premium Member • 8 months</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"As a tournament player, the exclusive events and rating system are invaluable. The community support makes every game more enjoyable."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Member">
+                            <div class="author-info">
+                                <h4>David Rodriguez</h4>
+                                <p>Annual Member • 2 years</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FAQ Section -->
+            <section class="membership-section faq-section">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I upgrade or downgrade my plan later?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can change your plan at any time. When upgrading, you'll be charged the prorated difference. When downgrading, the changes will take effect at the start of your next billing cycle.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is there a contract or commitment period?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, all our plans are month-to-month with no long-term contracts. You can cancel anytime. The annual plan is prepaid for one year but still comes with our 30-day money-back guarantee.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do you offer family or group discounts?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We offer family plans and group discounts for schools, clubs, or organizations with 5+ members. Contact our membership team for custom pricing.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I cancel my membership?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can cancel anytime from your account settings. If you cancel within 30 days of joining, you'll receive a full refund. After 30 days, cancellation will take effect at the end of your current billing period.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Are there any hidden fees?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No hidden fees. The price you see is what you pay. Tournament entry fees for special events are separate but always clearly listed with at least 50% discount for members.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-footer">
+                    <p>Still have questions? <a href="contact.html">Contact our support team</a> for assistance.</p>
+                </div>
+            </section>
+            
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2>Ready to Elevate Your Chess Journey?</h2>
+                    <p>Join our community of passionate chess players today</p>
+                    <div class="cta-buttons">
+                        <a href="#membership-plans" class="btn btn-primary btn-large">Choose Your Plan</a>
+                        <a href="contact.html" class="btn btn-outline btn-large">Contact Us</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-users"></i>
+                    <h3>HOME OF CHESS<span>PLAYERS</span></h3>
+                    <p>Building community through learning and competition since 2023.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="membership.html">Membership</a></li>
+                            <li><a href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="learn.html">Learn</a></li>
+                            <li><a href="tournament.html">Tournaments</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Connect With Us</h4>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                        </div>
+                        <p class="contact-info">
+                            <i class="fas fa-envelope"></i> membership@chessplayers.com<br>
+                            <i class="fas fa-phone"></i> (123) 456-7890
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Home of Chess Players. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="close-mobile-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li class="active"><a href="membership.html"><i class="fas fa-id-card"></i> Membership</a></li>
+            <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+            <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMobileMenuBtn = document.querySelector('.close-mobile-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            // Open mobile menu
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.style.display = 'block';
+                setTimeout(() => {
+                    mobileNav.classList.add('active');
+                }, 10);
+            });
+            
+            // Close mobile menu
+            closeMobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                setTimeout(() => {
+                    mobileNav.style.display = 'none';
+                }, 300);
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNav.classList.remove('active');
+                    setTimeout(() => {
+                        mobileNav.style.display = 'none';
+                    }, 300);
+                });
+            });
+            
+            // Update active navigation link based on current page
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.main-nav a, .mobile-nav a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage) {
+                    link.parentElement.classList.add('active');
+                } else {
+                    link.parentElement.classList.remove('active');
+                }
+            });
+            
+            // FAQ Accordion Functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    const answer = faqItem.querySelector('.faq-answer');
+                    const icon = question.querySelector('i');
+                    
+                    // Close other FAQ items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('active');
+                            item.querySelector('.faq-answer').style.maxHeight = null;
+                            item.querySelector('i').classList.remove('fa-chevron-up');
+                            item.querySelector('i').classList.add('fa-chevron-down');
+                        }
+                    });
+                    
+                    // Toggle current FAQ item
+                    faqItem.classList.toggle('active');
+                    
+                    if (faqItem.classList.contains('active')) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        answer.style.maxHeight = null;
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+            
+            // Plan selection animation
+            const planCards = document.querySelectorAll('.plan-card');
+            
+            planCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Only trigger if not clicking a button
+                    if (!e.target.closest('.btn')) {
+                        this.classList.toggle('selected');
+                        
+                        // Remove selection from other cards
+                        planCards.forEach(otherCard => {
+                            if (otherCard !== this) {
+                                otherCard.classList.remove('selected');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
