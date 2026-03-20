@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to Chess Openings - Home of Chess Players</title>
+    <title>Learn Chess - Home of Chess Players</title>
     <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="learn.css">
+    <link rel="stylesheet" href="learnupdated.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -36,189 +35,255 @@
         </div>
     </header>
 
-    <!-- Video Player Section -->
-    <main class="video-player-content">
+    <!-- Main Learn Content -->
+    <main class="learn-main-content">
         <div class="container">
-            <div class="video-player-container">
-                <!-- Breadcrumb -->
-                <div class="breadcrumb">
-                    <a href="learn.html"><i class="fas fa-home"></i> Learn</a>
-                    <i class="fas fa-chevron-right"></i>
-                    <a href="learn.html?category=openings">Openings</a>
-                    <i class="fas fa-chevron-right"></i>
-                    <span>Introduction to Chess Openings</span>
+            
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1><i class="fas fa-graduation-cap"></i> Learn Chess</h1>
+                <p>Master the game with our structured lessons, club classes, and curated resources.</p>
+            </div>
+
+            <!-- Chess Club Classes Section -->
+            <section class="club-classes-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chess-board"></i> Join Our Chess Club Classes</h2>
+                    <div class="section-divider"></div>
+                    <p>Enhance your skills with structured group lessons, personalized coaching, and regular practice sessions.</p>
                 </div>
                 
-                <!-- Video Player -->
-                <div class="video-player-wrapper">
-                    <div class="video-player">
-                        <video id="player" playsinline controls>
-                            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4">
-                            Your browser doesn't support HTML5 video.
-                        </video>
+                <div class="classes-grid">
+                    <div class="class-card">
+                        <div class="class-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Group Classes</h3>
+                        <p>Weekly group sessions for all skill levels. Learn together, play together, grow together.</p>
+                        <ul class="class-features">
+                            <li><i class="fas fa-check"></i> Small groups (max 8 players)</li>
+                            <li><i class="fas fa-check"></i> Certified instructors</li>
+                            <li><i class="fas fa-check"></i> Flexible scheduling</li>
+                        </ul>
+                        <span class="class-price">$25/session</span>
                     </div>
                     
-                    <!-- Video Info -->
-                    <div class="video-info-detailed">
-                        <h1>Introduction to Chess Openings</h1>
-                        <div class="video-stats">
-                            <span><i class="fas fa-eye"></i> <span id="view-count">1,240</span> views</span>
-                            <span><i class="fas fa-calendar"></i> June 15, 2024</span>
-                            <span class="difficulty beginner">Beginner</span>
-                            <span class="duration"><i class="fas fa-clock"></i> 15 minutes</span>
+                    <div class="class-card featured">
+                        <div class="class-badge">Most Popular</div>
+                        <div class="class-icon">
+                            <i class="fas fa-user-graduate"></i>
                         </div>
-                        
-                        <div class="instructor-info">
-                            <div class="instructor-avatar">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="GM Alex Morgan">
-                            </div>
-                            <div class="instructor-details">
-                                <h3>Instructor: GM Alex Morgan</h3>
-                                <p>Chess Grandmaster with 15+ years of teaching experience. Former national champion.</p>
-                            </div>
+                        <h3>Private Coaching</h3>
+                        <p>One-on-one sessions tailored to your specific goals and playing style.</p>
+                        <ul class="class-features">
+                            <li><i class="fas fa-check"></i> Personalized lesson plans</li>
+                            <li><i class="fas fa-check"></i> Game analysis & feedback</li>
+                            <li><i class="fas fa-check"></i> Progress tracking</li>
+                        </ul>
+                        <span class="class-price">$60/session</span>
+                    </div>
+                    
+                    <div class="class-card">
+                        <div class="class-icon">
+                            <i class="fas fa-child"></i>
                         </div>
-                        
-                        <div class="video-description-detailed">
-                            <h3>Description</h3>
-                            <p>In this beginner-friendly lesson, GM Alex Morgan introduces the fundamental principles of chess openings. You'll learn:</p>
-                            <ul>
-                                <li>Control the center of the board</li>
-                                <li>Develop your pieces efficiently</li>
-                                <li>Castle early for king safety</li>
-                                <li>Avoid moving the same piece multiple times in the opening</li>
-                                <li>Common opening mistakes to avoid</li>
-                            </ul>
-                            <p>This lesson is perfect for players who want to build a solid foundation for their opening repertoire.</p>
-                        </div>
-                        
-                        <div class="video-actions">
-                            <button class="btn btn-primary" id="like-video">
-                                <i class="far fa-thumbs-up"></i> <span>Like</span> <span class="count">(42)</span>
-                            </button>
-                            <button class="btn btn-outline" id="save-video">
-                                <i class="far fa-bookmark"></i> Save for Later
-                            </button>
-                            <button class="btn btn-outline" id="share-video">
-                                <i class="fas fa-share"></i> Share
-                            </button>
-                            <button class="btn btn-outline" id="download-notes">
-                                <i class="fas fa-download"></i> Download Notes
-                            </button>
-                        </div>
+                        <h3>Youth Program</h3>
+                        <p>Fun, engaging chess classes designed specifically for young learners ages 6-16.</p>
+                        <ul class="class-features">
+                            <li><i class="fas fa-check"></i> Age-appropriate curriculum</li>
+                            <li><i class="fas fa-check"></i> Tournament preparation</li>
+                            <li><i class="fas fa-check"></i> Scholarships available</li>
+                        </ul>
+                        <span class="class-price">$20/session</span>
                     </div>
                 </div>
                 
-                <!-- Video Chapters -->
-                <div class="video-chapters">
-                    <h3><i class="fas fa-list-ol"></i> Lesson Chapters</h3>
-                    <div class="chapters-list">
-                        <button class="chapter-item active" data-time="0">
-                            <span class="chapter-time">00:00</span>
-                            <span class="chapter-title">Introduction & Lesson Overview</span>
-                        </button>
-                        <button class="chapter-item" data-time="120">
-                            <span class="chapter-time">02:00</span>
-                            <span class="chapter-title">Principle 1: Control the Center</span>
-                        </button>
-                        <button class="chapter-item" data-time="300">
-                            <span class="chapter-time">05:00</span>
-                            <span class="chapter-title">Principle 2: Piece Development</span>
-                        </button>
-                        <button class="chapter-item" data-time="480">
-                            <span class="chapter-time">08:00</span>
-                            <span class="chapter-title">Principle 3: King Safety</span>
-                        </button>
-                        <button class="chapter-item" data-time="600">
-                            <span class="chapter-time">10:00</span>
-                            <span class="chapter-title">Common Opening Mistakes</span>
-                        </button>
-                        <button class="chapter-item" data-time="780">
-                            <span class="chapter-time">13:00</span>
-                            <span class="chapter-title">Practice Examples & Summary</span>
-                        </button>
-                    </div>
+                <div class="classes-cta">
+                    <p>Ready to elevate your chess game? Register for our classes today!</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdrfYF1AzJgrIJN6OkSp1fMBdYc9_QLbn8YHhEAqMyO7l5_GQ/viewform?usp=header" target="_blank" class="btn btn-primary btn-large">
+                        <i class="fas fa-edit"></i> Register via Google Form
+                    </a>
+                    <p class="cta-note"><i class="fas fa-info-circle"></i> First trial class is FREE for new members!</p>
+                </div>
+            </section>
+            
+            <!-- YouTube Resources Section -->
+            <section class="youtube-resources-section">
+                <div class="section-header">
+                    <h2><i class="fab fa-youtube"></i> Recommended YouTube Channels</h2>
+                    <div class="section-divider"></div>
+                    <p>Expand your knowledge with these curated chess channels from top educators and grandmasters.</p>
                 </div>
                 
-                <!-- Related Videos -->
-                <div class="related-videos">
-                    <h2>Related Lessons</h2>
-                    <div class="related-grid">
-                        <!-- Related Video 1 -->
-                        <div class="related-card">
-                            <div class="related-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1529693662655-5d8cd6c0e89e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Chess Tactics">
-                                <div class="play-overlay">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                            <div class="related-info">
-                                <h3>Mastering Chess Tactics</h3>
-                                <div class="related-meta">
-                                    <span>IM Sarah Chen</span>
-                                    <span>22 min</span>
-                                </div>
-                                <a href="watch.html" class="btn btn-small">Watch Now</a>
+                <div class="youtube-grid">
+                    <!-- YouTube Link 1 -->
+                    <a href="https://youtube.com/@GothamChess" target="_blank" class="youtube-card">
+                        <div class="youtube-thumbnail">
+                            <i class="fab fa-youtube"></i>
+                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="youtube-info">
+                            <h3>GothamChess</h3>
+                            <p>Entertaining lessons, game reviews, and opening guides by IM Levy Rozman.</p>
+                            <span class="youtube-meta"><i class="fas fa-users"></i> 2.1M subscribers</span>
+                        </div>
+                    </a>
+                    
+                    <!-- YouTube Link 2 -->
+                    <a href="https://youtube.com/@ChessBrahs" target="_blank" class="youtube-card">
+                        <div class="youtube-thumbnail">
+                            <i class="fab fa-youtube"></i>
+                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="youtube-info">
+                            <h3>ChessBrahs</h3>
+                            <p>GM-level instruction with a focus on practical improvement and building habits.</p>
+                            <span class="youtube-meta"><i class="fas fa-users"></i> 580K subscribers</span>
+                        </div>
+                    </a>
+                    
+                    <!-- YouTube Link 3 -->
+                    <a href="https://youtube.com/@HangingPawns" target="_blank" class="youtube-card">
+                        <div class="youtube-thumbnail">
+                            <i class="fab fa-youtube"></i>
+                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="youtube-info">
+                            <h3>Hanging Pawns</h3>
+                            <p>In-depth opening courses and strategic concepts for serious players.</p>
+                            <span class="youtube-meta"><i class="fas fa-users"></i> 320K subscribers</span>
+                        </div>
+                    </a>
+                    
+                    <!-- YouTube Link 4 -->
+                    <a href="https://youtube.com/@ChessNetwork" target="_blank" class="youtube-card">
+                        <div class="youtube-thumbnail">
+                            <i class="fab fa-youtube"></i>
+                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="youtube-info">
+                            <h3>ChessNetwork</h3>
+                            <p>Classic game analysis, tactics training, and beginner-friendly tutorials.</p>
+                            <span class="youtube-meta"><i class="fas fa-users"></i> 410K subscribers</span>
+                        </div>
+                    </a>
+                    
+                    <!-- YouTube Link 5 - Editable Placeholder -->
+                    <a href="[EDIT_THIS_LINK]" target="_blank" class="youtube-card placeholder">
+                        <div class="youtube-thumbnail">
+                            <i class="fas fa-plus"></i>
+                            <div class="play-icon"><i class="fas fa-pencil"></i></div>
+                        </div>
+                        <div class="youtube-info">
+                            <h3>[Edit Channel Name]</h3>
+                            <p>[Edit channel description here]</p>
+                            <span class="youtube-meta"><i class="fas fa-users"></i> [Subscribers]</span>
+                        </div>
+                    </a>
+                    
+                    <!-- YouTube Link 6 - Editable Placeholder -->
+                    <a href="[EDIT_THIS_LINK]" target="_blank" class="youtube-card placeholder">
+                        <div class="youtube-thumbnail">
+                            <i class="fas fa-plus"></i>
+                            <div class="play-icon"><i class="fas fa-pencil"></i></div>
+                        </div>
+                        <div class="youtube-info">
+                            <h3>[Edit Channel Name]</h3>
+                            <p>[Edit channel description here]</p>
+                            <span class="youtube-meta"><i class="fas fa-users"></i> [Subscribers]</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="youtube-cta">
+                    <p>Have a favorite chess YouTube channel? <a href="contact.html">Suggest it to us!</a></p>
+                </div>
+            </section>
+            
+            <!-- Related Lessons Section -->
+            <section class="related-videos">
+                <div class="section-header">
+                    <h2><i class="fas fa-chess"></i> Popular Lessons</h2>
+                    <div class="section-divider"></div>
+                    <p>Explore our most-watched lessons to continue your chess journey.</p>
+                </div>
+                <div class="related-grid">
+                    <!-- Lesson Card 1 -->
+                    <div class="related-card">
+                        <div class="related-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1529693662655-5d8cd6c0e89e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Chess Tactics">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
                             </div>
                         </div>
-                        
-                        <!-- Related Video 2 -->
-                        <div class="related-card">
-                            <div class="related-thumbnail">
-                                <div class="default-thumbnail">
-                                    <i class="fas fa-chess-board"></i>
-                                </div>
-                                <div class="play-overlay">
-                                    <i class="fas fa-play"></i>
-                                </div>
+                        <div class="related-info">
+                            <h3>Mastering Chess Tactics</h3>
+                            <div class="related-meta">
+                                <span>IM Sarah Chen</span>
+                                <span>22 min</span>
                             </div>
-                            <div class="related-info">
-                                <h3>Sicilian Defense Basics</h3>
-                                <div class="related-meta">
-                                    <span>GM Alex Morgan</span>
-                                    <span>12 min</span>
-                                </div>
-                                <a href="watch.html" class="btn btn-small">Watch Now</a>
+                            <a href="watch.html" class="btn btn-small">Watch Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lesson Card 2 -->
+                    <div class="related-card">
+                        <div class="related-thumbnail">
+                            <div class="default-thumbnail">
+                                <i class="fas fa-chess-board"></i>
+                            </div>
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
                             </div>
                         </div>
-                        
-                        <!-- Related Video 3 -->
-                        <div class="related-card">
-                            <div class="related-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1528819622765-d6b1c3c55c8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Positional Chess">
-                                <div class="play-overlay">
-                                    <i class="fas fa-play"></i>
-                                </div>
+                        <div class="related-info">
+                            <h3>Sicilian Defense Basics</h3>
+                            <div class="related-meta">
+                                <span>GM Alex Morgan</span>
+                                <span>12 min</span>
                             </div>
-                            <div class="related-info">
-                                <h3>Positional Chess Fundamentals</h3>
-                                <div class="related-meta">
-                                    <span>IM Sarah Chen</span>
-                                    <span>25 min</span>
-                                </div>
-                                <a href="watch.html" class="btn btn-small">Watch Now</a>
+                            <a href="watch.html" class="btn btn-small">Watch Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lesson Card 3 -->
+                    <div class="related-card">
+                        <div class="related-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1528819622765-d6b1c3c55c8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Positional Chess">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
                             </div>
                         </div>
-                        
-                        <!-- Related Video 4 -->
-                        <div class="related-card">
-                            <div class="related-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Middle Game">
-                                <div class="play-overlay">
-                                    <i class="fas fa-play"></i>
-                                </div>
+                        <div class="related-info">
+                            <h3>Positional Chess Fundamentals</h3>
+                            <div class="related-meta">
+                                <span>IM Sarah Chen</span>
+                                <span>25 min</span>
                             </div>
-                            <div class="related-info">
-                                <h3>Middle Game Planning</h3>
-                                <div class="related-meta">
-                                    <span>WGM Jasmine Lee</span>
-                                    <span>18 min</span>
-                                </div>
-                                <a href="watch.html" class="btn btn-small">Watch Now</a>
+                            <a href="watch.html" class="btn btn-small">Watch Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lesson Card 4 -->
+                    <div class="related-card">
+                        <div class="related-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Middle Game">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
                             </div>
+                        </div>
+                        <div class="related-info">
+                            <h3>Middle Game Planning</h3>
+                            <div class="related-meta">
+                                <span>WGM Jasmine Lee</span>
+                                <span>18 min</span>
+                            </div>
+                            <a href="watch.html" class="btn btn-small">Watch Now</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+            
         </div>
     </main>
 
@@ -295,9 +360,6 @@
         </ul>
     </div>
 
-    <!-- Plyr Video Player JS -->
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu functionality
@@ -305,7 +367,6 @@
             const closeMobileMenuBtn = document.querySelector('.close-mobile-menu');
             const mobileNav = document.querySelector('.mobile-nav');
             
-            // Open mobile menu
             mobileMenuBtn.addEventListener('click', function() {
                 mobileNav.style.display = 'block';
                 setTimeout(() => {
@@ -313,7 +374,6 @@
                 }, 10);
             });
             
-            // Close mobile menu
             closeMobileMenuBtn.addEventListener('click', function() {
                 mobileNav.classList.remove('active');
                 setTimeout(() => {
@@ -321,7 +381,6 @@
                 }, 300);
             });
             
-            // Close mobile menu when clicking on a link
             const mobileLinks = document.querySelectorAll('.mobile-nav a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -345,112 +404,7 @@
                 }
             });
             
-            // Initialize video player
-            const player = new Plyr('#player', {
-                controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
-                settings: ['captions', 'quality', 'speed'],
-                speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
-            });
-            
-            // Video interaction buttons
-            const likeBtn = document.getElementById('like-video');
-            const saveBtn = document.getElementById('save-video');
-            const shareBtn = document.getElementById('share-video');
-            const downloadBtn = document.getElementById('download-notes');
-            const viewCount = document.getElementById('view-count');
-            
-            // Simulate view count increase
-            setTimeout(() => {
-                const currentViews = parseInt(viewCount.textContent.replace(',', ''));
-                viewCount.textContent = (currentViews + 1).toLocaleString();
-            }, 3000);
-            
-            likeBtn.addEventListener('click', function() {
-                const likeIcon = this.querySelector('i');
-                const likeCount = this.querySelector('.count');
-                const currentLikes = parseInt(likeCount.textContent.match(/\d+/)[0]);
-                
-                if (this.classList.contains('liked')) {
-                    this.classList.remove('liked');
-                    likeIcon.className = 'far fa-thumbs-up';
-                    likeCount.textContent = `(${currentLikes - 1})`;
-                    this.querySelector('span:first-child').textContent = 'Like';
-                } else {
-                    this.classList.add('liked');
-                    likeIcon.className = 'fas fa-thumbs-up';
-                    likeCount.textContent = `(${currentLikes + 1})`;
-                    this.querySelector('span:first-child').textContent = 'Liked';
-                }
-            });
-            
-            saveBtn.addEventListener('click', function() {
-                const saveIcon = this.querySelector('i');
-                if (this.classList.contains('saved')) {
-                    this.classList.remove('saved');
-                    saveIcon.className = 'far fa-bookmark';
-                    this.innerHTML = '<i class="far fa-bookmark"></i> Save for Later';
-                    alert('Removed from saved lessons');
-                } else {
-                    this.classList.add('saved');
-                    saveIcon.className = 'fas fa-bookmark';
-                    this.innerHTML = '<i class="fas fa-bookmark"></i> Saved';
-                    alert('Added to saved lessons');
-                }
-            });
-            
-            shareBtn.addEventListener('click', function() {
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'Introduction to Chess Openings',
-                        text: 'Check out this chess lesson!',
-                        url: window.location.href
-                    });
-                } else {
-                    navigator.clipboard.writeText(window.location.href);
-                    alert('Link copied to clipboard!');
-                }
-            });
-            
-            downloadBtn.addEventListener('click', function() {
-                alert('Downloading lesson notes...');
-                // In a real application, this would download a PDF file
-            });
-            
-            // Chapter navigation
-            const chapterItems = document.querySelectorAll('.chapter-item');
-            chapterItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // Remove active class from all chapters
-                    chapterItems.forEach(chap => chap.classList.remove('active'));
-                    // Add active class to clicked chapter
-                    this.classList.add('active');
-                    
-                    // Get the time in seconds
-                    const time = parseInt(this.getAttribute('data-time'));
-                    // Seek to that time in the video
-                    player.currentTime = time;
-                    player.play();
-                });
-            });
-            
-            // Update active chapter based on video time
-            player.on('timeupdate', function() {
-                const currentTime = player.currentTime;
-                chapterItems.forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Find the current chapter
-                for (let i = chapterItems.length - 1; i >= 0; i--) {
-                    const chapterTime = parseInt(chapterItems[i].getAttribute('data-time'));
-                    if (currentTime >= chapterTime) {
-                        chapterItems[i].classList.add('active');
-                        break;
-                    }
-                }
-            });
-            
-            // Related video cards
+            // Related lesson cards click handler
             const relatedCards = document.querySelectorAll('.related-card');
             relatedCards.forEach(card => {
                 card.addEventListener('click', function(e) {
