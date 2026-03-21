@@ -1,4 +1,4 @@
-/* Learn Page Specific Styles - No Video Player */
+/* Learn Page Specific Styles - Recorded Classes with Google Drive */
 
 /* Page Header */
 .page-header {
@@ -371,46 +371,62 @@
 }
 
 /* ========================================
-   Related Lessons Section Styles
+   Recorded Classes Section (Google Drive) Styles
    ======================================== */
-.related-videos {
-    margin-bottom: 60px;
-}
-
-.related-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.related-card {
+.recorded-classes-section {
     background: white;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 60px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.recorded-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin: 35px 0;
+}
+
+.recorded-card {
+    background: #f8f9fa;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
-    cursor: pointer;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
 }
 
-.related-card:hover {
+.recorded-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    border-color: #4285f4;
 }
 
-.related-thumbnail {
+.recorded-card.placeholder {
+    border-style: dashed;
+    border-color: #bdc3c7;
+}
+
+.recorded-card.placeholder:hover {
+    border-color: #3498db;
+}
+
+.recorded-thumbnail {
     position: relative;
-    height: 160px;
+    height: 180px;
     overflow: hidden;
 }
 
-.related-thumbnail img {
+.recorded-thumbnail img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-.related-card:hover .related-thumbnail img {
+.recorded-card:hover .recorded-thumbnail img {
     transform: scale(1.05);
 }
 
@@ -424,58 +440,189 @@
     color: white;
 }
 
+.default-thumbnail.placeholder-thumb {
+    background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+}
+
 .default-thumbnail i {
-    font-size: 3rem;
+    font-size: 3.5rem;
     opacity: 0.8;
 }
 
-.play-overlay {
+.drive-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    background: #4285f4;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
 }
 
-.related-card:hover .play-overlay {
-    opacity: 1;
-}
-
-.play-overlay i {
+.drive-overlay i {
     color: white;
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
-.related-info {
-    padding: 20px;
+.recorded-card.placeholder .drive-overlay {
+    background: #95a5a6;
 }
 
-.related-info h3 {
-    font-size: 1.15rem;
+.recorded-card.placeholder .drive-overlay i {
+    color: #7f8c8d;
+    font-size: 1rem;
+}
+
+.duration-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.duration-badge i {
+    font-size: 0.8rem;
+}
+
+.recorded-info {
+    padding: 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.recorded-info h3 {
+    font-size: 1.2rem;
     color: #2c3e50;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-weight: 600;
     line-height: 1.4;
 }
 
-.related-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    color: #7f8c8d;
+.recorded-card.placeholder .recorded-info h3 {
+    color: #95a5a6;
+    font-style: italic;
 }
 
-.related-info .btn-small {
-    width: 100%;
-    padding: 10px;
+.instructor {
+    color: #3498db;
     font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.class-desc {
+    color: #7f8c8d;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+.recorded-card.placeholder .class-desc {
+    color: #bdc3c7;
+}
+
+.class-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.level {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.level.beginner {
+    background: rgba(46, 204, 113, 0.15);
+    color: #27ae60;
+}
+
+.level.intermediate {
+    background: rgba(243, 156, 18, 0.15);
+    color: #d35400;
+}
+
+.level.advanced {
+    background: rgba(231, 76, 60, 0.15);
+    color: #c0392b;
+}
+
+.date {
+    color: #95a5a6;
+    font-size: 0.85rem;
+}
+
+.btn-drive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 20px;
+    background: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-drive:hover {
+    background: #3367d6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(66, 133, 244, 0.35);
+}
+
+.btn-drive i {
+    font-size: 1.1rem;
+}
+
+.classes-note {
     text-align: center;
+    padding: 20px;
+    background: #e8f4fd;
+    border-radius: 10px;
+    margin-top: 25px;
+    border-left: 4px solid #4285f4;
+}
+
+.classes-note p {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.classes-note a {
+    color: #3498db;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.classes-note a:hover {
+    text-decoration: underline;
 }
 
 /* ========================================
@@ -562,13 +709,14 @@
     }
     
     .club-classes-section,
-    .youtube-resources-section {
+    .youtube-resources-section,
+    .recorded-classes-section {
         padding: 30px 20px;
     }
     
     .classes-grid,
     .youtube-grid,
-    .related-grid {
+    .recorded-grid {
         grid-template-columns: 1fr;
     }
     
@@ -586,13 +734,18 @@
         padding: 15px;
     }
     
-    .classes-cta .btn-large {
+    .classes-cta .btn-large,
+    .btn-drive {
         width: 100%;
         padding: 12px;
     }
     
     .section-header h2 {
         font-size: 1.6rem;
+    }
+    
+    .recorded-thumbnail {
+        height: 160px;
     }
 }
 
@@ -601,23 +754,41 @@
         font-size: 1.7rem;
     }
     
-    .class-card {
-        padding: 25px 20px;
+    .class-card,
+    .recorded-card {
+        padding: 20px 15px;
     }
     
     .class-icon {
         font-size: 2rem;
     }
     
-    .youtube-thumbnail {
-        height: 100px;
+    .youtube-thumbnail,
+    .recorded-thumbnail {
+        height: 140px;
     }
     
-    .youtube-thumbnail i {
+    .youtube-thumbnail i,
+    .default-thumbnail i {
         font-size: 2rem;
+    }
+    
+    .drive-overlay {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .drive-overlay i {
+        font-size: 1.1rem;
     }
     
     .btn {
         width: 100%;
+    }
+    
+    .class-meta {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
     }
 }
