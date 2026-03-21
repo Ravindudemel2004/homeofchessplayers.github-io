@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournaments - Home of Chess Players</title>
+    <link rel="stylesheet" href="tournaments.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-users"></i>
+                    <h1>HOME OF CHESS<span>PLAYERS</span></h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="membership.html"><i class="fas fa-id-card"></i> Membership</a></li>
+                        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                        <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li class="active"><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2><i class="fas fa-trophy"></i> Chess Tournaments</h2>
+                <p>Compete, improve, and claim your victory in our organized chess tournaments for all skill levels.</p>
+                <div class="hero-buttons">
+                    <a href="#upcoming" class="btn btn-primary">View Tournaments</a>
+                    <a href="#register" class="btn btn-secondary">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Tournament Filters -->
+            <section class="filters-section">
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                    <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="beginner">Beginner</button>
+                    <button class="filter-btn" data-filter="advanced">Advanced</button>
+                </div>
+            </section>
+
+            <!-- Upcoming Tournaments -->
+            <section id="upcoming" class="tournaments-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-check"></i> Upcoming Tournaments</h2>
+                    <p>Register now and secure your spot in these exciting competitions</p>
+                </div>
+                
+                <div class="tournament-grid">
+                    <!-- Tournament Card 1 -->
+                    <article class="tournament-card featured">
+                        <div class="tournament-badge">Featured</div>
+                        <div class="tournament-image">
+                            <i class="fas fa-chess-board"></i>
+                        </div>
+                        <div class="tournament-content">
+                            <div class="tournament-header">
+                                <h3>Summer Championship 2024</h3>
+                                <span class="tournament-type">Classical</span>
+                            </div>
+                            <div class="tournament-details">
+                                <p><i class="far fa-clock"></i> June 25, 2024 - 10:00 AM</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Main Arena, Building A</p>
+                                <p><i class="fas fa-users"></i> Max 64 Players</p>
+                                <p><i class="fas fa-medal"></i> Prize Pool: $5,000</p>
+                            </div>
+                            <div class="tournament-footer">
+                                <span class="skill-level beginner">All Levels</span>
+                                <span class="entry-fee">Entry: $25</span>
+                            </div>
+                            <a href="#register" class="btn btn-register">Register Now</a>
+                        </div>
+                    </article>
+
+                    <!-- Tournament Card 2 -->
+                    <article class="tournament-card">
+                        <div class="tournament-image">
+                            <i class="fas fa-chess-knight"></i>
+                        </div>
+                        <div class="tournament-content">
+                            <div class="tournament-header">
+                                <h3>Blitz Masters Cup</h3>
+                                <span class="tournament-type">Blitz</span>
+                            </div>
+                            <div class="tournament-details">
+                                <p><i class="far fa-clock"></i> July 10, 2024 - 6:00 PM</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Online via Chess.com</p>
+                                <p><i class="fas fa-users"></i> Max 128 Players</p>
+                                <p><i class="fas fa-medal"></i> Prize Pool: $2,000</p>
+                            </div>
+                            <div class="tournament-footer">
+                                <span class="skill-level advanced">1600+ Rating</span>
+                                <span class="entry-fee">Entry: $15</span>
+                            </div>
+                            <a href="#register" class="btn btn-register">Register Now</a>
+                        </div>
+                    </article>
+
+                    <!-- Tournament Card 3 -->
+                    <article class="tournament-card">
+                        <div class="tournament-image">
+                            <i class="fas fa-chess-queen"></i>
+                        </div>
+                        <div class="tournament-content">
+                            <div class="tournament-header">
+                                <h3>Beginner's Open</h3>
+                                <span class="tournament-type">Rapid</span>
+                            </div>
+                            <div class="tournament-details">
+                                <p><i class="far fa-clock"></i> July 20, 2024 - 2:00 PM</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Community Center</p>
+                                <p><i class="fas fa-users"></i> Max 40 Players</p>
+                                <p><i class="fas fa-medal"></i> Trophies & Certificates</p>
+                            </div>
+                            <div class="tournament-footer">
+                                <span class="skill-level beginner">Under 1200 Rating</span>
+                                <span class="entry-fee free">Free Entry</span>
+                            </div>
+                            <a href="#register" class="btn btn-register">Register Now</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Registration Section -->
+            <section id="register" class="registration-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-plus"></i> Tournament Registration</h2>
+                    <p>Fill out the form below to register for your chosen tournament</p>
+                </div>
+                
+                <div class="registration-container">
+                    <form class="registration-form" id="tournamentForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tournament">Select Tournament *</label>
+                                <select id="tournament" name="tournament" required>
+                                    <option value="">Choose a tournament...</option>
+                                    <option value="Summer Championship 2024">Summer Championship 2024</option>
+                                    <option value="Blitz Masters Cup">Blitz Masters Cup</option>
+                                    <option value="Beginner's Open">Beginner's Open</option>
+                                    <option value="Youth League">Youth League</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">Chess Rating (Optional)</label>
+                                <input type="number" id="rating" name="rating" placeholder="e.g., 1500" min="0" max="3000">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+1 (234) 567-8900">
+                            </div>
+                            <div class="form-group">
+                                <label for="club">Chess Club/Affiliation</label>
+                                <input type="text" id="club" name="club" placeholder="Local Chess Club">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="notes">Additional Notes</label>
+                            <textarea id="notes" name="notes" rows="4" placeholder="Any special requirements or questions..."></textarea>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#">tournament rules</a> and <a href="#">code of conduct</a> *</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-submit">Complete Registration</button>
+                    </form>
+                    
+                    <div class="registration-info">
+                        <h4><i class="fas fa-info-circle"></i> Registration Info</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Confirmation email sent within 24 hours</li>
+                            <li><i class="fas fa-check"></i> Payment details provided after approval</li>
+                            <li><i class="fas fa-check"></i> Cancel up to 48h before event for full refund</li>
+                            <li><i class="fas fa-check"></i> Bring valid ID on tournament day</li>
+                        </ul>
+                        <div class="contact-help">
+                            <p>Need help? Contact us:</p>
+                            <a href="mailto:tournaments@chessplayers.com"><i class="fas fa-envelope"></i> tournaments@chessplayers.com</a>
+                            <a href="tel:+1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Past Winners -->
+            <section class="winners-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-crown"></i> Past Champions</h2>
+                    <p>Celebrating the achievements of our tournament winners</p>
+                </div>
+                
+                <div class="winners-grid">
+                    <div class="winner-card">
+                        <div class="winner-rank rank-1">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="winner-info">
+                            <h4>Alexandra M.</h4>
+                            <p class="winner-event">Spring Classic 2024</p>
+                            <p class="winner-rating">Rating: 2150</p>
+                        </div>
+                    </div>
+                    <div class="winner-card">
+                        <div class="winner-rank rank-2">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="winner-info">
+                            <h4>James T.</h4>
+                            <p class="winner-event">Winter Blitz 2024</p>
+                            <p class="winner-rating">Rating: 1980</p>
+                        </div>
+                    </div>
+                    <div class="winner-card">
+                        <div class="winner-rank rank-3">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="winner-info">
+                            <h4>Sofia R.</h4>
+                            <p class="winner-event">Autumn Rapid 2023</p>
+                            <p class="winner-rating">Rating: 2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="view-more">
+                    <a href="#" class="btn btn-outline">View All Winners <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </section>
+
+            <!-- Tournament Rules Preview -->
+            <section class="rules-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> Tournament Rules</h2>
+                    <p>Key guidelines to ensure fair and enjoyable competition</p>
+                </div>
+                
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <i class="fas fa-stopwatch"></i>
+                        <h4>Time Controls</h4>
+                        <p>Classical: 90+30, Rapid: 25+10, Blitz: 5+3. Clocks provided for all games.</p>
+                    </div>
+                    <div class="rule-card">
+                        <i class="fas fa-handshake"></i>
+                        <h4>Sportsmanship</h4>
+                        <p>Respect opponents and officials. Zero tolerance for unsportsmanlike conduct.</p>
+                    </div>
+                    <div class="rule-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Device Policy</h4>
+                        <p>Phones must be silenced and stored. No electronic assistance during play.</p>
+                    </div>
+                    <div class="rule-card">
+                        <i class="fas fa-undo"></i>
+                        <h4>Touch-Move Rule</h4>
+                        <p>Standard FIDE rules apply. If you touch a piece, you must move it if legal.</p>
+                    </div>
+                </div>
+                
+                <div class="rules-footer">
+                    <a href="#" class="btn btn-outline">Download Full Rules PDF <i class="fas fa-download"></i></a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-users"></i>
+                    <h3>HOME OF CHESS<span>PLAYERS</span></h3>
+                    <p>Building community through learning and competition since 2023.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="membership.html">Membership</a></li>
+                            <li><a href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="learn.html">Learn</a></li>
+                            <li><a href="tournament.html">Tournaments</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Connect With Us</h4>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                        </div>
+                        <p class="contact-info">
+                            <i class="fas fa-envelope"></i> info@chessplayers.com<br>
+                            <i class="fas fa-phone"></i> (123) 456-7890
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Home of Chess Players. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="close-mobile-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="membership.html"><i class="fas fa-id-card"></i> Membership</a></li>
+            <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+            <li class="active"><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // ==========================================
+        // GOOGLE SHEETS INTEGRATION
+        // Replace with your Google Apps Script Web App URL
+        // ==========================================
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwtd7GRctOSdaxP69VL1YLqYp6tShF_jhOg4eMD_l3FCDjLbbRtB80eyifFmbOjOsW6OQ/exec';
+        
+        const form = document.getElementById('tournamentForm');
+        const submitBtn = form.querySelector('.btn-submit');
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Disable button and show loading state
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Send form data to Google Sheets
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new FormData(form)
+            })
+            .then(response => {
+                // Success!
+                alert('✅ Registration successful! We will contact you soon.');
+                form.reset();
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                // Error handling
+                console.error('Error!', error.message);
+                alert('❌ There was an error submitting your registration. Please try again or contact us directly.');
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+        
+        // ==========================================
+        // MOBILE MENU FUNCTIONALITY
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMobileMenuBtn = document.querySelector('.close-mobile-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            // Open mobile menu
+            mobileMenuBtn?.addEventListener('click', function() {
+                mobileNav.style.display = 'block';
+                setTimeout(() => {
+                    mobileNav.classList.add('active');
+                }, 10);
+            });
+            
+            // Close mobile menu
+            closeMobileMenuBtn?.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                setTimeout(() => {
+                    mobileNav.style.display = 'none';
+                }, 300);
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNav.classList.remove('active');
+                    setTimeout(() => {
+                        mobileNav.style.display = 'none';
+                    }, 300);
+                });
+            });
+            
+            // Filter buttons functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    // Add your filter logic here
+                    const filter = this.getAttribute('data-filter');
+                    console.log('Filter:', filter);
+                });
+            });
+            
+            // Update active navigation link based on current page
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.main-nav a, .mobile-nav a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage) {
+                    link.parentElement.classList.add('active');
+                } else {
+                    link.parentElement.classList.remove('active');
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
