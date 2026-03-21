@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Chess - Home of Chess Players</title>
     <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="learn.css">
+    <link rel="stylesheet" href="learnupdated.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -96,14 +96,6 @@
                         </ul>
                         <span class="class-price">$20/session</span>
                     </div>
-                </div>
-                
-                <div class="classes-cta">
-                    <p>Ready to elevate your chess game? Register for our classes today!</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdrfYF1AzJgrIJN6OkSp1fMBdYc9_QLbn8YHhEAqMyO7l5_GQ/viewform?usp=header" target="_blank" class="btn btn-primary btn-large">
-                        <i class="fas fa-edit"></i> Register via Google Form
-                    </a>
-                    <p class="cta-note"><i class="fas fa-info-circle"></i> First trial class is FREE for new members!</p>
                 </div>
             </section>
             
@@ -310,6 +302,178 @@
                     <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Google Drive links open in a new tab. Make sure you're signed in to access videos. <a href="contact.html">Request access</a> if you encounter any issues.</p>
                 </div>
             </section>
+
+            <!-- Registration Form Section (Google Sheets Integration) -->
+            <section class="registration-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-plus"></i> Register for Classes</h2>
+                    <div class="section-divider"></div>
+                    <p>Fill out the form below to secure your spot in our chess classes. We'll contact you within 24 hours.</p>
+                </div>
+                
+                <form class="registration-form" id="class-registration-form" novalidate>
+                    <!-- Hidden field for Google Apps Script endpoint -->
+                    <input type="hidden" id="script-endpoint" value="PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE">
+                    
+                    <!-- Personal Information -->
+                    <div class="form-section personal-info">
+                        <h3 class="section-title"><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullname">
+                                    <i class="fas fa-user"></i> Full Name <span class="required">*</span>
+                                </label>
+                                <input type="text" id="fullname" name="fullname" required 
+                                       placeholder="Enter your full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i> Email Address <span class="required">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="your@email.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">
+                                    <i class="fas fa-phone"></i> Phone Number
+                                </label>
+                                <input type="tel" id="phone" name="phone" 
+                                       placeholder="(123) 456-7890">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="age">
+                                    <i class="fas fa-birthday-cake"></i> Age <span class="required">*</span>
+                                </label>
+                                <input type="number" id="age" name="age" min="6" max="99" required 
+                                       placeholder="Your age">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Class Selection -->
+                    <div class="form-section class-selection">
+                        <h3 class="section-title"><i class="fas fa-chess-knight"></i> Class Selection</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="classType">
+                                    <i class="fas fa-users"></i> Class Type <span class="required">*</span>
+                                </label>
+                                <select id="classType" name="classType" required>
+                                    <option value="">Select a class type</option>
+                                    <option value="group">Group Classes ($25/session)</option>
+                                    <option value="private">Private Coaching ($60/session)</option>
+                                    <option value="youth">Youth Program ($20/session)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="skillLevel">
+                                    <i class="fas fa-star"></i> Skill Level <span class="required">*</span>
+                                </label>
+                                <select id="skillLevel" name="skillLevel" required>
+                                    <option value="">Select your level</option>
+                                    <option value="beginner">Beginner (Just starting)</option>
+                                    <option value="intermediate">Intermediate (Know rules, some experience)</option>
+                                    <option value="advanced">Advanced (Tournament player)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="schedule">
+                                    <i class="fas fa-calendar"></i> Preferred Schedule
+                                </label>
+                                <select id="schedule" name="schedule">
+                                    <option value="">No preference</option>
+                                    <option value="weekday-morning">Weekday Mornings</option>
+                                    <option value="weekday-evening">Weekday Evenings</option>
+                                    <option value="weekend">Weekends</option>
+                                    <option value="flexible">Flexible</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sessions">
+                                    <i class="fas fa-hashtag"></i> Number of Sessions
+                                </label>
+                                <select id="sessions" name="sessions">
+                                    <option value="1">1 Session (Trial)</option>
+                                    <option value="4">4 Sessions (1 Month)</option>
+                                    <option value="8" selected>8 Sessions (2 Months)</option>
+                                    <option value="12">12 Sessions (3 Months)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Information -->
+                    <div class="form-section additional-info">
+                        <h3 class="section-title"><i class="fas fa-info-circle"></i> Additional Information</h3>
+                        <div class="form-group full-width">
+                            <label for="goals">
+                                <i class="fas fa-bullseye"></i> What are your chess goals?
+                            </label>
+                            <textarea id="goals" name="goals" rows="3" 
+                                      placeholder="Tell us what you hope to achieve (e.g., learn openings, improve tactics, prepare for tournaments)..."></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="experience">
+                                <i class="fas fa-history"></i> Chess Experience
+                            </label>
+                            <textarea id="experience" name="experience" rows="2" 
+                                      placeholder="Briefly describe your chess background..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Terms & Submit -->
+                    <div class="form-terms">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. 
+                            I understand that my first trial class is <strong>FREE</strong>.</span>
+                        </label>
+                        
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <span>Send me chess tips, tournament updates, and club news via email.</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fas fa-paper-plane"></i> Submit Registration
+                    </button>
+                    
+                    <p class="form-note">
+                        <i class="fas fa-lock"></i> Your information is secure and will never be shared.
+                    </p>
+                </form>
+                
+                <!-- Success Message -->
+                <div class="form-success" id="form-success" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Registration Submitted Successfully!</h3>
+                    <p>Thank you for registering! We've received your information and will contact you within 24 hours to confirm your class schedule.</p>
+                    <p class="success-note">
+                        <i class="fas fa-envelope"></i> A confirmation email has been sent to <strong id="confirm-email"></strong>
+                    </p>
+                    <button class="btn btn-outline" onclick="resetForm()">Register Another</button>
+                </div>
+                
+                <!-- Error Message -->
+                <div class="form-error" id="form-error" style="display: none;">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3>Submission Failed</h3>
+                    <p>There was an error submitting your registration. Please try again or contact us directly.</p>
+                    <button class="btn btn-primary" onclick="resetForm()">Try Again</button>
+                </div>
+            </section>
             
         </div>
     </main>
@@ -430,7 +594,95 @@
                     link.parentElement.classList.remove('active');
                 }
             });
+
+            // Registration Form Handling - Google Sheets Integration
+            const registrationForm = document.getElementById('class-registration-form');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+            const confirmEmail = document.getElementById('confirm-email');
+            const scriptEndpoint = document.getElementById('script-endpoint')?.value;
+            
+            if (registrationForm && scriptEndpoint && scriptEndpoint !== 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                registrationForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Validate terms
+                    const termsCheckbox = document.getElementById('terms');
+                    if (!termsCheckbox.checked) {
+                        alert('Please agree to the Terms of Service to continue.');
+                        termsCheckbox.focus();
+                        return;
+                    }
+                    
+                    // Get form values
+                    const formData = {
+                        fullname: document.getElementById('fullname').value.trim(),
+                        email: document.getElementById('email').value.trim(),
+                        phone: document.getElementById('phone').value.trim(),
+                        age: document.getElementById('age').value,
+                        classType: document.getElementById('classType').value,
+                        skillLevel: document.getElementById('skillLevel').value,
+                        schedule: document.getElementById('schedule').value,
+                        sessions: document.getElementById('sessions').value,
+                        goals: document.getElementById('goals').value.trim(),
+                        experience: document.getElementById('experience').value.trim(),
+                        terms: termsCheckbox.checked ? 'on' : 'off',
+                        newsletter: document.getElementById('newsletter')?.checked ? 'on' : 'off'
+                    };
+                    
+                    // Show loading state
+                    const submitBtn = this.querySelector('.btn-submit');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        // Send to Google Apps Script
+                        const response = await fetch(scriptEndpoint, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        });
+                        
+                        // Show success (no-cors means we can't read response)
+                        confirmEmail.textContent = formData.email;
+                        registrationForm.style.display = 'none';
+                        formSuccess.style.display = 'block';
+                        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Optional: Clear form
+                        registrationForm.reset();
+                        
+                    } catch (error) {
+                        console.error('Submission error:', error);
+                        registrationForm.style.display = 'none';
+                        formError.style.display = 'block';
+                        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+            } else if (registrationForm) {
+                // Show warning if endpoint not configured
+                registrationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('⚠️ Google Sheets integration not configured.\n\nPlease add your Google Apps Script URL to:\n<input type="hidden" id="script-endpoint" value="YOUR_URL_HERE">');
+                });
+            }
         });
+        
+        // Reset form function
+        function resetForm() {
+            const formError = document.getElementById('form-error');
+            const formSuccess = document.getElementById('form-success');
+            const registrationForm = document.getElementById('class-registration-form');
+            
+            formError.style.display = 'none';
+            formSuccess.style.display = 'none';
+            registrationForm.style.display = 'block';
+            registrationForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     </script>
 </body>
 </html>
