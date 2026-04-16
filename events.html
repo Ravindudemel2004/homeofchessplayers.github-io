@@ -433,6 +433,13 @@
 
         // ========================================
         // GOOGLE SHEETS EVENTS INTEGRATION
+        // Matches your sheet structure:
+        // Column A: Date
+        // Column B: Event
+        // Column C: Location
+        // Column D: Format
+        // Column E: Link
+        // Column F: Published (YES/NO)
         // ========================================
         
         async function loadEvents() {
@@ -449,9 +456,9 @@
             containerEl.style.display = 'none';
             
             // Check if API URL is configured
-            if (!apiUrl || apiUrl === 'https://script.google.com/macros/s/AKfycbwokzSUnN4F8REFI3QSjDRqXpgP7xw7OP7r5apfwbATqEifWKEcXRGUNFNocANNcDwROw/exec') {
+            if (!apiUrl || apiUrl === 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
                 loadingEl.style.display = 'none';
-                errorEl.style.display = 'block';
+                errorEl.style.display = 'flex';
                 errorEl.querySelector('p').textContent = 'Events API not configured. Please add your Google Apps Script URL.';
                 return;
             }
@@ -527,22 +534,64 @@
         
         function createEventElement(event) {
             const div = document.createElement('div');
-            div.className = `event-item ${event.featured ? 'featured' : ''}`;
+            div.className = 'event-item';
             
-            // Format date
-            const date = new Date(event.date);
-            const day = date.getDate();
-            const month = date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+            // Parse date - handle various formats
+            let dateObj;
+            if (event.date.includes('-')) {
+                // Handle date ranges like "May 16-26, 2026"
+                const dateMatch = event.date.match(/([A-Za-z]+)\s+(\d{1,2})-?(\d{1,2})?,?\s*(\d{4})/);
+                if (dateMatch) {
+                    const monthName = dateMatch[1];
+                    const day = dateMatch[2];
+                    dateObj = new Date(`${monthName} ${day}, ${dateMatch[4]}`);
+                } else {
+                    dateObj = new Date(event.date);
+                }
+            } else {
+                dateObj = new Date(event.date);
+            }
             
-            // Format time
-            const timeRange = event.time || 'TBA';
+            const day = dateObj.getDate();
+            const month = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
             
-            // Format price
-            const price = event.price || 'Free';
+            // Format date for display
+            let displayDate = event.date;
+            if (event.date.includes('-') && !event.date.includes(' - ')) {
+                // Convert "May 16-26, 2026" to proper format
+                displayDate = event.date.replace(/(\d{1,2})-(\d{1,2})/, '$1 - $2');
+            }
             
-            // Format category tag
-            const categoryClass = event.category?.toLowerCase() || 'social';
-            const categoryLabel = event.category || 'Event';
+            // Determine category based on format or event name
+            let category = 'Event';
+            let categoryClass = 'social';
+            
+            if (event.format) {
+                const format = event.format.toLowerCase();
+                if (format.includes('standard') || format.includes('rapid') || format.includes('blitz')) {
+                    category = 'Tournament';
+                    categoryClass = 'tournament';
+                } else if (format.includes('workshop') || format.includes('class')) {
+                    category = 'Workshop';
+                    categoryClass = 'workshop';
+                } else if (format.includes('youth') || format.includes('kids')) {
+                    category = 'Youth';
+                    categoryClass = 'youth';
+                }
+            }
+            
+            // Check if event name contains keywords
+            const eventName = event.title.toLowerCase();
+            if (eventName.includes('championship') || eventName.includes('tournament')) {
+                category = 'Tournament';
+                categoryClass = 'tournament';
+            } else if (eventName.includes('workshop') || eventName.includes('class')) {
+                category = 'Workshop';
+                categoryClass = 'workshop';
+            } else if (eventName.includes('youth') || eventName.includes('kids')) {
+                category = 'Youth';
+                categoryClass = 'youth';
+            }
             
             // Build HTML
             div.innerHTML = `
@@ -553,17 +602,16 @@
                 <div class="event-details">
                     <div class="event-header">
                         <h3>${event.title}</h3>
-                        <span class="event-tag ${categoryClass}">${categoryLabel}</span>
+                        <span class="event-tag ${categoryClass}">${category}</span>
                     </div>
-                    <p class="event-description">${event.description}</p>
+                    <p class="event-description">${event.description || 'Join us for this exciting chess event!'}</p>
                     <div class="event-meta">
-                        <span><i class="far fa-clock"></i> ${timeRange}</span>
+                        <span><i class="far fa-clock"></i> ${event.format || 'TBA'}</span>
                         <span><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
-                        <span><i class="fas fa-user"></i> ${event.level || 'All levels'}</span>
                     </div>
                     <div class="event-footer">
-                        <span class="event-price">${price}</span>
-                        ${event.link ? `<a href="${event.link}" class="btn btn-small" target="_blank">Register Now</a>` : '<button class="btn btn-small" disabled>Coming Soon</button>'}
+                        <span class="event-price">Free Registration</span>
+                        ${event.link ? `<a href="${event.link}" class="btn btn-small" target="_blank">View Details <i class="fas fa-external-link-alt"></i></a>` : '<button class="btn btn-small" disabled>Coming Soon</button>'}
                     </div>
                 </div>
             `;
@@ -573,17 +621,10 @@
         
         function loadPreviousMonths() {
             alert('Previous months navigation would load here');
-            // In production, add offset parameter to API call
         }
         
         function loadNextMonths() {
             alert('Next months navigation would load here');
-            // In production, add offset parameter to API call
-        }
-        
-        // Refresh button functionality
-        function refreshEvents() {
-            loadEvents();
         }
     </script>
 </body>
