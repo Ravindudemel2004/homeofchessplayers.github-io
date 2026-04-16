@@ -79,6 +79,17 @@
             border-radius: 8px;
             margin-bottom: 20px;
             display: none;
+            font-size: 0.9rem;
+        }
+        
+        .auth-debug {
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #ffc107;
         }
         
         .auth-footer {
@@ -91,23 +102,6 @@
             color: #3498db;
             text-decoration: none;
             font-weight: 600;
-        }
-        
-        .forgot-password {
-            text-align: right;
-            margin-top: -10px;
-            margin-bottom: 20px;
-        }
-        
-        .forgot-password a {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            text-decoration: none;
-        }
-        
-        .forgot-password a:hover {
-            color: #3498db;
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -146,6 +140,14 @@
                 <p>Sign in to your chess account</p>
             </div>
             
+            <!-- Debug Info -->
+            <div id="debug-info" class="auth-debug">
+                <strong>Debug Info:</strong><br>
+                Firebase: <span id="firebase-status">Loading...</span><br>
+                Auth: <span id="auth-status">Loading...</span><br>
+                Current User: <span id="user-status">Checking...</span>
+            </div>
+            
             <div id="login-error" class="auth-error"></div>
             
             <form id="login-form" class="auth-form">
@@ -157,10 +159,6 @@
                 <div class="form-group">
                     <label for="password"><i class="fas fa-lock"></i> Password</label>
                     <input type="password" id="password" required placeholder="Enter your password">
-                </div>
-                
-                <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">
@@ -181,7 +179,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <script>
-        // Firebase Configuration
+        // Firebase Configuration - YOUR CONFIG
         const firebaseConfig = {
             apiKey: "AIzaSyDiSc1n78BWCClIiWlRKPdJSMNG7GWZ8Ag",
             authDomain: "home-of-chess-players.firebaseapp.com",
@@ -191,83 +189,112 @@
             appId: "1:966734153213:web:b8523fdf90c090f94d8594"
         };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+        // Debug elements
+        const firebaseStatus = document.getElementById('firebase-status');
+        const authStatus = document.getElementById('auth-status');
+        const userStatus = document.getElementById('user-status');
+        const errorDiv = document.getElementById('login-error');
 
-        // Check if user is already logged in
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                window.location.href = 'dashboard.html';
-            }
-        });
+        try {
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            
+            firebaseStatus.textContent = '✅ Loaded';
+            firebaseStatus.style.color = '#27ae60';
+            
+            authStatus.textContent = '✅ Ready';
+            authStatus.style.color = '#27ae60';
+            
+            // Check current user
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    userStatus.textContent = `✅ Logged in as ${user.email}`;
+                    userStatus.style.color = '#27ae60';
+                    console.log('User already logged in:', user.email);
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                } else {
+                    userStatus.textContent = '❌ Not logged in';
+                    userStatus.style.color = '#e74c3c';
+                }
+            });
+            
+            // Login Form Handler
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                
+                errorDiv.style.display = 'none';
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+                
+                console.log('Attempting login with:', email);
+                
+                try {
+                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                    console.log('✅ Login successful:', userCredential.user.email);
+                    
+                    errorDiv.style.background = '#d4edda';
+                    errorDiv.style.color = '#155724';
+                    errorDiv.textContent = '✅ Login successful! Redirecting...';
+                    errorDiv.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                    
+                } catch (error) {
+                    console.error('❌ Login failed:', error.code, error.message);
+                    
+                    let errorMessage = getErrorMessage(error.code);
+                    errorMessage += `<br><br><strong>Debug:</strong> ${error.code}`;
+                    
+                    errorDiv.innerHTML = errorMessage;
+                    errorDiv.style.background = '#fee';
+                    errorDiv.style.color = '#c33';
+                    errorDiv.style.display = 'block';
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                }
+            });
+            
+        } catch (error) {
+            console.error('Firebase initialization error:', error);
+            firebaseStatus.textContent = '❌ Error: ' + error.message;
+            firebaseStatus.style.color = '#e74c3c';
+            
+            authStatus.textContent = '❌ Failed';
+            authStatus.style.color = '#e74c3c';
+            
+            errorDiv.innerHTML = `<strong>Firebase Error:</strong> ${error.message}<br><br>Please check console (F12) for details.`;
+            errorDiv.style.display = 'block';
+        }
 
-        // Login Form Handler
-        document.getElementById('login-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const errorDiv = document.getElementById('login-error');
-            const submitBtn = this.querySelector('button[type="submit"]');
-            
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-            
-            errorDiv.style.display = 'none';
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
-            
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                // User is signed in - onAuthStateChanged will redirect
-            } catch (error) {
-                console.error('Login error:', error);
-                errorDiv.textContent = getErrorMessage(error.code);
-                errorDiv.style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
-            }
-        });
-
-        // Helper function to get user-friendly error messages
+        // Helper function
         function getErrorMessage(errorCode) {
             switch(errorCode) {
                 case 'auth/user-not-found':
-                    return 'No account found with this email.';
+                    return '❌ No account found with this email. Please sign up first.';
                 case 'auth/wrong-password':
-                    return 'Incorrect password.';
+                    return '❌ Incorrect password. Please try again.';
                 case 'auth/invalid-email':
-                    return 'Invalid email address.';
+                    return '❌ Invalid email address.';
                 case 'auth/user-disabled':
-                    return 'This account has been disabled.';
+                    return '❌ This account has been disabled.';
+                case 'auth/too-many-requests':
+                    return '❌ Too many failed attempts. Please try again later.';
+                case 'auth/operation-not-allowed':
+                    return '❌ Email/password sign-in is not enabled. Contact admin.';
                 default:
-                    return 'Failed to sign in. Please try again.';
+                    return '❌ Failed to sign in. Please try again.';
             }
         }
-
-        // Mobile menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const closeMobileMenuBtn = document.querySelector('.close-mobile-menu');
-            const mobileNav = document.querySelector('.mobile-nav');
-            
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mobileNav.style.display = 'block';
-                    setTimeout(() => {
-                        mobileNav.classList.add('active');
-                    }, 10);
-                });
-            }
-            
-            if (closeMobileMenuBtn) {
-                closeMobileMenuBtn.addEventListener('click', function() {
-                    mobileNav.classList.remove('active');
-                    setTimeout(() => {
-                        mobileNav.style.display = 'none';
-                    }, 300);
-                });
-            }
-        });
     </script>
 </body>
 </html>
