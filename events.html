@@ -149,7 +149,7 @@
                     <button class="btn btn-outline" onclick="loadNextMonths()">Next Months <i class="fas fa-chevron-right"></i></button>
                 </div>
                 
-                <!-- Hidden: Google Apps Script URL (YOUR URL IS INTEGRATED) -->
+                <!-- Hidden: Google Apps Script URL -->
                 <input type="hidden" id="events-api-url" value="https://script.google.com/macros/s/AKfycbx1sUtd2vNkX4rcMFfUZi7b3Qu_0nyY66i8g1hDPfOXEszmdCHkExB8lRSNnWsj_Kic_w/exec">
             </section>
             
@@ -433,13 +433,14 @@
 
         // ========================================
         // GOOGLE SHEETS EVENTS INTEGRATION
-        // Matches your sheet structure:
+        // Updated Sheet Structure:
         // Column A: Date
         // Column B: Event
         // Column C: Location
         // Column D: Format
         // Column E: Link
         // Column F: Published (YES/NO)
+        // Column G: Registration (Free/Paid/Price)
         // ========================================
         
         async function loadEvents() {
@@ -456,10 +457,10 @@
             containerEl.style.display = 'none';
             
             // Check if API URL is configured
-            if (!apiUrl || apiUrl === 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+            if (!apiUrl || apiUrl.includes('PASTE_YOUR')) {
                 loadingEl.style.display = 'none';
                 errorEl.style.display = 'flex';
-                errorEl.querySelector('p').textContent = 'Events API not configured. Please add your Google Apps Script URL.';
+                errorEl.querySelector('p').textContent = 'Events API not configured.';
                 return;
             }
             
@@ -536,12 +537,12 @@
             const div = document.createElement('div');
             div.className = 'event-item';
             
-            // Parse date - handle various formats
+            // Parse date
             const dateObj = parseDate(event.date);
             const day = dateObj.getDate();
             const month = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
             
-            // Determine category based on format or event name
+            // Determine category
             let category = 'Event';
             let categoryClass = 'social';
             
@@ -559,7 +560,7 @@
                 }
             }
             
-            // Check if event name contains keywords
+            // Check event name for keywords
             const eventName = event.title.toLowerCase();
             if (eventName.includes('championship') || eventName.includes('tournament') || eventName.includes('open')) {
                 category = 'Tournament';
@@ -571,6 +572,9 @@
                 category = 'Youth';
                 categoryClass = 'youth';
             }
+            
+            // Format registration/price display
+            const registrationDisplay = formatRegistration(event.registration);
             
             // Build HTML
             div.innerHTML = `
@@ -589,13 +593,42 @@
                         <span><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
                     </div>
                     <div class="event-footer">
-                        <span class="event-price">Free Registration</span>
+                        <span class="event-price ${registrationDisplay.isFree ? 'free' : 'paid'}">
+                            ${registrationDisplay.isFree ? '<i class="fas fa-gift"></i> Free Registration' : registrationDisplay.text}
+                        </span>
                         ${event.link ? `<a href="${event.link}" class="btn btn-small" target="_blank">View Details <i class="fas fa-external-link-alt"></i></a>` : '<button class="btn btn-small" disabled>Coming Soon</button>'}
                     </div>
                 </div>
             `;
             
             return div;
+        }
+        
+        // Format registration/price for display
+        function formatRegistration(registration) {
+            if (!registration || registration.trim() === '') {
+                return { isFree: false, text: 'TBA' };
+            }
+            
+            const reg = registration.trim().toLowerCase();
+            
+            // Check for free indicators
+            if (reg === 'free' || reg === 'free registration' || reg === 'complimentary' || reg === 'no charge') {
+                return { isFree: true, text: 'Free Registration' };
+            }
+            
+            // Check for member/guest pricing
+            if (reg.includes('member') && reg.includes('guest')) {
+                return { isFree: false, text: registration };
+            }
+            
+            // Check for price with $ symbol
+            if (reg.includes('$') || reg.match(/\d+/)) {
+                return { isFree: false, text: registration };
+            }
+            
+            // Default: show as entered
+            return { isFree: false, text: registration };
         }
         
         // Helper function to parse dates in various formats

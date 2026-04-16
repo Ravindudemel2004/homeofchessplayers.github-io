@@ -776,3 +776,43 @@
         display: none;
     }
 }
+/* ========================================
+   Registration/Price Badge Styles
+   ======================================== */
+
+.event-price {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.event-price.free {
+    color: #27ae60;
+}
+
+.event-price.free i {
+    color: #2ecc71;
+}
+
+.event-price.paid {
+    color: #e74c3c;
+}
+
+.event-price.paid i {
+    color: #e74c3c;
+}
+
+/* Mobile responsive for price */
+@media (max-width: 768px) {
+    .event-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .event-price {
+        margin-bottom: 10px;
+    }
+}
