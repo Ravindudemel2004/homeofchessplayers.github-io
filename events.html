@@ -52,7 +52,7 @@
             <!-- Events Categories -->
             <section class="events-section categories-section">
                 <div class="section-header">
-                    <h2>Events</h2>
+                    <h2>Types of Events We Host</h2>
                     <div class="section-divider"></div>
                     <p>Choose from a variety of chess activities that suit your interests and skill level</p>
                 </div>
@@ -149,7 +149,7 @@
                     <button class="btn btn-outline" onclick="loadNextMonths()">Next Months <i class="fas fa-chevron-right"></i></button>
                 </div>
                 
-                <!-- Hidden: Google Apps Script URL -->
+                <!-- Hidden: Google Apps Script URL (YOUR URL IS INTEGRATED) -->
                 <input type="hidden" id="events-api-url" value="https://script.google.com/macros/s/AKfycbx1sUtd2vNkX4rcMFfUZi7b3Qu_0nyY66i8g1hDPfOXEszmdCHkExB8lRSNnWsj_Kic_w/exec">
             </section>
             
@@ -456,7 +456,7 @@
             containerEl.style.display = 'none';
             
             // Check if API URL is configured
-            if (!apiUrl || apiUrl === 'https://script.google.com/macros/s/AKfycbx1sUtd2vNkX4rcMFfUZi7b3Qu_0nyY66i8g1hDPfOXEszmdCHkExB8lRSNnWsj_Kic_w/exec') {
+            if (!apiUrl || apiUrl === 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
                 loadingEl.style.display = 'none';
                 errorEl.style.display = 'flex';
                 errorEl.querySelector('p').textContent = 'Events API not configured. Please add your Google Apps Script URL.';
@@ -494,7 +494,7 @@
             const grouped = {};
             
             events.forEach(event => {
-                const date = new Date(event.date);
+                const date = parseDate(event.date);
                 const monthKey = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
                 
                 if (!grouped[monthKey]) {
@@ -505,7 +505,7 @@
             
             // Sort months chronologically
             return Object.entries(grouped).sort((a, b) => {
-                return new Date(a[1][0].date) - new Date(b[1][0].date);
+                return parseDate(a[1][0].date) - parseDate(b[1][0].date);
             });
         }
         
@@ -537,30 +537,9 @@
             div.className = 'event-item';
             
             // Parse date - handle various formats
-            let dateObj;
-            if (event.date.includes('-')) {
-                // Handle date ranges like "May 16-26, 2026"
-                const dateMatch = event.date.match(/([A-Za-z]+)\s+(\d{1,2})-?(\d{1,2})?,?\s*(\d{4})/);
-                if (dateMatch) {
-                    const monthName = dateMatch[1];
-                    const day = dateMatch[2];
-                    dateObj = new Date(`${monthName} ${day}, ${dateMatch[4]}`);
-                } else {
-                    dateObj = new Date(event.date);
-                }
-            } else {
-                dateObj = new Date(event.date);
-            }
-            
+            const dateObj = parseDate(event.date);
             const day = dateObj.getDate();
             const month = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-            
-            // Format date for display
-            let displayDate = event.date;
-            if (event.date.includes('-') && !event.date.includes(' - ')) {
-                // Convert "May 16-26, 2026" to proper format
-                displayDate = event.date.replace(/(\d{1,2})-(\d{1,2})/, '$1 - $2');
-            }
             
             // Determine category based on format or event name
             let category = 'Event';
@@ -568,13 +547,13 @@
             
             if (event.format) {
                 const format = event.format.toLowerCase();
-                if (format.includes('standard') || format.includes('rapid') || format.includes('blitz')) {
+                if (format.includes('standard') || format.includes('rapid') || format.includes('blitz') || format.includes('tournament')) {
                     category = 'Tournament';
                     categoryClass = 'tournament';
-                } else if (format.includes('workshop') || format.includes('class')) {
+                } else if (format.includes('workshop') || format.includes('class') || format.includes('lesson')) {
                     category = 'Workshop';
                     categoryClass = 'workshop';
-                } else if (format.includes('youth') || format.includes('kids')) {
+                } else if (format.includes('youth') || format.includes('kids') || format.includes('junior')) {
                     category = 'Youth';
                     categoryClass = 'youth';
                 }
@@ -582,13 +561,13 @@
             
             // Check if event name contains keywords
             const eventName = event.title.toLowerCase();
-            if (eventName.includes('championship') || eventName.includes('tournament')) {
+            if (eventName.includes('championship') || eventName.includes('tournament') || eventName.includes('open')) {
                 category = 'Tournament';
                 categoryClass = 'tournament';
-            } else if (eventName.includes('workshop') || eventName.includes('class')) {
+            } else if (eventName.includes('workshop') || eventName.includes('class') || eventName.includes('lesson')) {
                 category = 'Workshop';
                 categoryClass = 'workshop';
-            } else if (eventName.includes('youth') || eventName.includes('kids')) {
+            } else if (eventName.includes('youth') || eventName.includes('kids') || eventName.includes('junior')) {
                 category = 'Youth';
                 categoryClass = 'youth';
             }
@@ -617,6 +596,23 @@
             `;
             
             return div;
+        }
+        
+        // Helper function to parse dates in various formats
+        function parseDate(dateStr) {
+            if (!dateStr) return new Date(0);
+            
+            // Handle date ranges like "May 16-26, 2026"
+            const rangeMatch = dateStr.match(/([A-Za-z]+)\s+(\d{1,2})-?(\d{1,2})?,?\s*(\d{4})/);
+            if (rangeMatch) {
+                const monthName = rangeMatch[1];
+                const day = rangeMatch[2];
+                const year = rangeMatch[4];
+                return new Date(`${monthName} ${day}, ${year}`);
+            }
+            
+            // Try standard date parsing
+            return new Date(dateStr);
         }
         
         function loadPreviousMonths() {
