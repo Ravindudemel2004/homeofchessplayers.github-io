@@ -312,27 +312,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <script>
-                        // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDiSc1n78BWCClIiWlRKPdJSMNG7GWZ8Ag",
-  authDomain: "home-of-chess-players.firebaseapp.com",
-  projectId: "home-of-chess-players",
-  storageBucket: "home-of-chess-players.firebasestorage.app",
-  messagingSenderId: "966734153213",
-  appId: "1:966734153213:web:b8523fdf90c090f94d8594",
-  measurementId: "G-F86SVSPRWS"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDiSc1n78BWCClIiWlRKPdJSMNG7GWZ8Ag",
             authDomain: "home-of-chess-players.firebaseapp.com",
@@ -341,36 +321,44 @@ const analytics = getAnalytics(app);
             messagingSenderId: "966734153213",
             appId: "1:966734153213:web:b8523fdf90c090f94d8594"
         };
-        
+
+        // Initialize Firebase (ONLY ONCE!)
         firebase.initializeApp(firebaseConfig);
+        
+        // Initialize services
         const auth = firebase.auth();
         const db = firebase.firestore();
-        
+
         // Check authentication
         auth.onAuthStateChanged(async user => {
             if (!user) {
                 // Not logged in - redirect to login
+                console.log('No user logged in, redirecting to login...');
                 window.location.href = 'login.html';
                 return;
             }
             
-            // Logged in - load dashboard
+            console.log('User logged in:', user.email);
+            
+            // User is logged in - load dashboard data
             try {
                 // Get member data from Firestore
-                const doc = await db.collection('members').doc(user.uid).get();
+                const docRef = db.collection('members').doc(user.uid);
+                const doc = await docRef.get();
                 
                 if (doc.exists) {
                     const data = doc.data();
+                    console.log('Member data loaded:', data);
                     
-                    // Populate dashboard
+                    // Update dashboard with user data
                     document.getElementById('member-name').textContent = data.fullname || 'Member';
                     document.getElementById('member-email').textContent = user.email;
                     document.getElementById('profile-name').textContent = data.fullname || '-';
                     document.getElementById('profile-email').textContent = user.email;
                     document.getElementById('profile-phone').textContent = data.phone || 'Not provided';
-                    document.getElementById('profile-skill').textContent = data.skillLevel || '-';
+                    document.getElementById('profile-skill').textContent = capitalizeFirstLetter(data.skillLevel) || '-';
                     document.getElementById('membership-type').textContent = data.membership === 'premium' ? 'Premium' : 'Free';
-                    document.getElementById('profile-status').textContent = data.status || 'Active';
+                    document.getElementById('profile-status').textContent = capitalizeFirstLetter(data.status) || 'Active';
                     
                     // Format join date
                     if (data.joinDate) {
@@ -380,30 +368,50 @@ const analytics = getAnalytics(app);
                             month: 'long',
                             day: 'numeric'
                         });
+                    } else {
+                        document.getElementById('profile-join-date').textContent = 'N/A';
                     }
                     
-                    // Show dashboard, hide loading
+                    // Hide loading, show dashboard
                     document.getElementById('loading-dashboard').style.display = 'none';
                     document.getElementById('dashboard-content').style.display = 'block';
+                    
                 } else {
-                    // No member data found
+                    console.error('No member document found for user:', user.uid);
                     alert('Member profile not found. Please contact support.');
-                    logout();
+                    await auth.signOut();
+                    window.location.href = 'home.html';
                 }
+                
             } catch (error) {
                 console.error('Error loading dashboard:', error);
-                alert('Failed to load dashboard. Please try again.');
+                document.getElementById('loading-dashboard').innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="color: #e74c3c;"></i>
+                    <p style="color: #e74c3c;">Failed to load dashboard. Please try again.</p>
+                    <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 20px;">
+                        <i class="fas fa-sync-alt"></i> Retry
+                    </button>
+                `;
             }
         });
-        
+
         // Logout function
         function logout() {
-            auth.signOut().then(() => {
-                window.location.href = 'home.html';
-            }).catch(error => {
-                console.error('Logout error:', error);
-                alert('Failed to sign out. Please try again.');
-            });
+            if (confirm('Are you sure you want to sign out?')) {
+                auth.signOut().then(() => {
+                    console.log('User signed out');
+                    window.location.href = 'home.html';
+                }).catch(error => {
+                    console.error('Logout error:', error);
+                    alert('Failed to sign out. Please try again.');
+                });
+            }
+        }
+
+        // Helper function
+        function capitalizeFirstLetter(string) {
+            if (!string) return '';
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     </script>
 </body>

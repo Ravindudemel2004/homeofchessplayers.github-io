@@ -25,6 +25,7 @@
                         <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
                         <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
                         <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li id="auth-nav"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-btn">
@@ -39,26 +40,22 @@
         <div class="container">
             <div class="hero-content">
                 <h2>Welcome to Our Community</h2>
-                <p>Join us to learn, compete, and grow together in a vibrant community of enthusiasts and professionals.</p>
+                <p>Join us to learn, compete, and grow together in a vibrant community of chess enthusiasts and professionals.</p>
                 <div class="hero-buttons">
-                    <a href="membership.html" class="btn btn-primary">Become a Member</a>
+                    <a href="signup.html" class="btn btn-primary">Join Now</a>
                     <a href="events.html" class="btn btn-secondary">View Events</a>
                 </div>
             </div>
-        </div>
-        <div class="hero-buttons">
-    <a href="signup.html" class="btn btn-primary">Join Now</a>
-    <a href="login.html" class="btn btn-secondary">Sign In</a>
         </div>
     </section>
 
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Main Section: Welcome -->
+            <!-- Welcome Section -->
             <section class="main-section">
                 <div class="section-header">
-                    <h2>Welcome to Our Organization</h2>
+                    <h2>Welcome to Home of Chess Players</h2>
                     <p>Discover what makes us special and how you can be part of our journey</p>
                 </div>
                 
@@ -92,45 +89,7 @@
                 </div>
             </section>
             
-            <!-- Upcoming Events Preview (Dynamic from Google Sheets) -->
-            <section class="main-section">
-                <div class="section-header">
-                    <h2>Upcoming Events Preview</h2>
-                    <p>Don't miss these exciting events happening soon</p>
-                </div>
-                
-                <!-- Loading State -->
-                <div id="home-events-loading" class="events-loading-home">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading upcoming events...</p>
-                </div>
-                
-                <!-- Error State -->
-                <div id="home-events-error" class="events-error-home" style="display: none;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Unable to load events. Please try again later.</p>
-                </div>
-                
-                <!-- Empty State -->
-                <div id="home-events-empty" class="events-empty-home" style="display: none;">
-                    <i class="fas fa-calendar-times"></i>
-                    <p>No upcoming events scheduled. Check back soon!</p>
-                </div>
-                
-                <!-- Events Preview Container -->
-                <div id="home-events-preview" class="events-preview-home" style="display: none;">
-                    <!-- Events will be dynamically inserted here -->
-                </div>
-                
-                <div class="section-footer">
-                    <a href="events.html" class="btn btn-outline">View All Events</a>
-                </div>
-                
-                <!-- Hidden: Google Apps Script URL -->
-                <input type="hidden" id="home-events-api-url" value="https://script.google.com/macros/s/AKfycbx1sUtd2vNkX4rcMFfUZi7b3Qu_0nyY66i8g1hDPfOXEszmdCHkExB8lRSNnWsj_Kic_w/exec">
-            </section>
-            
-            <!-- Main Section: Latest News -->
+            <!-- Latest News -->
             <section class="main-section">
                 <div class="section-header">
                     <h2>Latest News & Updates</h2>
@@ -248,11 +207,53 @@
             <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
             <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
             <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li id="mobile-auth-nav"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
         </ul>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
     <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiSc1n78BWCClIiWlRKPdJSMNG7GWZ8Ag",
+            authDomain: "home-of-chess-players.firebaseapp.com",
+            projectId: "home-of-chess-players",
+            storageBucket: "home-of-chess-players.appspot.com",
+            messagingSenderId: "966734153213",
+            appId: "1:966734153213:web:b8523fdf90c090f94d8594"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Check authentication state and update navigation
+        auth.onAuthStateChanged(user => {
+            const authNav = document.getElementById('auth-nav');
+            const mobileAuthNav = document.getElementById('mobile-auth-nav');
+            
+            if (user) {
+                // User is signed in
+                if (authNav) {
+                    authNav.innerHTML = `<a href="dashboard.html"><i class="fas fa-user"></i> Dashboard</a>`;
+                }
+                if (mobileAuthNav) {
+                    mobileAuthNav.innerHTML = `<a href="dashboard.html"><i class="fas fa-user"></i> Dashboard</a>`;
+                }
+            } else {
+                // User is signed out
+                if (authNav) {
+                    authNav.innerHTML = `<a href="login.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>`;
+                }
+                if (mobileAuthNav) {
+                    mobileAuthNav.innerHTML = `<a href="login.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>`;
+                }
+            }
+        });
+
         // Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -298,134 +299,7 @@
                     link.parentElement.classList.remove('active');
                 }
             });
-            
-            // Load home page events preview
-            loadHomeEvents();
         });
-
-        // ========================================
-        // HOME PAGE EVENTS PREVIEW
-        // Fetches from same Google Sheet as events page
-        // Shows only next 3 upcoming events
-        // ========================================
-        
-        async function loadHomeEvents() {
-            const loadingEl = document.getElementById('home-events-loading');
-            const errorEl = document.getElementById('home-events-error');
-            const emptyEl = document.getElementById('home-events-empty');
-            const previewEl = document.getElementById('home-events-preview');
-            const apiUrl = document.getElementById('home-events-api-url')?.value;
-            
-            // Show loading, hide others
-            loadingEl.style.display = 'flex';
-            errorEl.style.display = 'none';
-            emptyEl.style.display = 'none';
-            previewEl.style.display = 'none';
-            
-            // Check if API URL is configured
-            if (!apiUrl || apiUrl.includes('PASTE_YOUR')) {
-                loadingEl.style.display = 'none';
-                errorEl.style.display = 'flex';
-                return;
-            }
-            
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                
-                if (!data.success || !data.events || data.events.length === 0) {
-                    loadingEl.style.display = 'none';
-                    emptyEl.style.display = 'flex';
-                    return;
-                }
-                
-                // Sort events by date and get next 3
-                const events = data.events
-                    .sort((a, b) => parseDate(a.date) - parseDate(b.date))
-                    .slice(0, 3);
-                
-                // Render events preview
-                renderHomeEventsPreview(events, previewEl);
-                
-                // Show preview, hide loading
-                loadingEl.style.display = 'none';
-                previewEl.style.display = 'grid';
-                
-            } catch (error) {
-                console.error('Error loading home events:', error);
-                loadingEl.style.display = 'none';
-                errorEl.style.display = 'flex';
-            }
-        }
-        
-        function renderHomeEventsPreview(events, container) {
-            container.innerHTML = '';
-            
-            events.forEach(event => {
-                const eventCard = createHomeEventCard(event);
-                container.appendChild(eventCard);
-            });
-        }
-        
-        function createHomeEventCard(event) {
-            const div = document.createElement('div');
-            div.className = 'event-preview-card';
-            
-            // Parse date
-            const dateObj = parseDate(event.date);
-            const day = dateObj.getDate();
-            const month = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-            
-            // Format time (if available in format field or description)
-            let timeText = 'TBA';
-            if (event.format && event.format.includes('AM') || event.format.includes('PM')) {
-                timeText = event.format;
-            } else if (event.description) {
-                const timeMatch = event.description.match(/(\d{1,2}:\d{2}\s*(?:AM|PM)\s*-\s*\d{1,2}:\d{2}\s*(?:AM|PM))/i);
-                if (timeMatch) {
-                    timeText = timeMatch[1];
-                }
-            }
-            
-            // Build HTML
-            div.innerHTML = `
-                <div class="event-preview-date">
-                    <span class="event-preview-day">${day}</span>
-                    <span class="event-preview-month">${month}</span>
-                </div>
-                <div class="event-preview-info">
-                    <h3>${event.title}</h3>
-                    <div class="event-preview-meta">
-                        <span class="event-preview-time">
-                            <i class="far fa-clock"></i> ${timeText}
-                        </span>
-                        <span class="event-preview-location">
-                            <i class="fas fa-map-marker-alt"></i> ${event.location}
-                        </span>
-                    </div>
-                </div>
-                <a href="events.html" class="event-preview-btn">Details</a>
-            `;
-            
-            return div;
-        }
-        
-        // Helper function to parse dates in various formats
-        function parseDate(dateStr) {
-            if (!dateStr) return new Date(0);
-            
-            // Handle date ranges like "May 16-26, 2026"
-            const rangeMatch = dateStr.match(/([A-Za-z]+)\s+(\d{1,2})-?(\d{1,2})?,?\s*(\d{4})/);
-            if (rangeMatch) {
-                const monthName = rangeMatch[1];
-                const day = rangeMatch[2];
-                const year = rangeMatch[4];
-                return new Date(`${monthName} ${day}, ${year}`);
-            }
-            
-            // Try standard date parsing
-            return new Date(dateStr);
-        }
     </script>
 </body>
 </html>

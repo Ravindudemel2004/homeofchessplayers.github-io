@@ -181,27 +181,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <script>
-       // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDiSc1n78BWCClIiWlRKPdJSMNG7GWZ8Ag",
-  authDomain: "home-of-chess-players.firebaseapp.com",
-  projectId: "home-of-chess-players",
-  storageBucket: "home-of-chess-players.firebasestorage.app",
-  messagingSenderId: "966734153213",
-  appId: "1:966734153213:web:b8523fdf90c090f94d8594",
-  measurementId: "G-F86SVSPRWS"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDiSc1n78BWCClIiWlRKPdJSMNG7GWZ8Ag",
             authDomain: "home-of-chess-players.firebaseapp.com",
@@ -210,17 +190,18 @@ const analytics = getAnalytics(app);
             messagingSenderId: "966734153213",
             appId: "1:966734153213:web:b8523fdf90c090f94d8594"
         };
-        
+
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        
+
         // Check if user is already logged in
         auth.onAuthStateChanged(user => {
             if (user) {
                 window.location.href = 'dashboard.html';
             }
         });
-        
+
         // Login Form Handler
         document.getElementById('login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -246,7 +227,8 @@ const analytics = getAnalytics(app);
                 submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
             }
         });
-        
+
+        // Helper function to get user-friendly error messages
         function getErrorMessage(errorCode) {
             switch(errorCode) {
                 case 'auth/user-not-found':
@@ -261,6 +243,31 @@ const analytics = getAnalytics(app);
                     return 'Failed to sign in. Please try again.';
             }
         }
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMobileMenuBtn = document.querySelector('.close-mobile-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.style.display = 'block';
+                    setTimeout(() => {
+                        mobileNav.classList.add('active');
+                    }, 10);
+                });
+            }
+            
+            if (closeMobileMenuBtn) {
+                closeMobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.remove('active');
+                    setTimeout(() => {
+                        mobileNav.style.display = 'none';
+                    }, 300);
+                });
+            }
+        });
     </script>
 </body>
 </html>
