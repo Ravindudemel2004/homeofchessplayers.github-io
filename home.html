@@ -88,130 +88,87 @@
                 </div>
             </section>
             
-            <!-- Main Section: Chess News (UPDATED - Easy Copy/Paste) -->
-            <section class="main-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-newspaper"></i> Popular Chess News</h2>
-                    <p>Stay updated with the latest from the chess world. Copy, paste, and edit the cards below!</p>
-                </div>
-                
-                <div class="news-grid">
-                    
-                    <!-- 📰 NEWS CARD 1 - COPY FROM HERE -->
-                    <article class="news-card chess-news-card">
-                        <div class="news-image">
-                            <i class="fas fa-chess-queen news-icon"></i>
-                            <span class="news-source">Chess.com</span>
-                        </div>
-                        <div class="news-content">
-                            <h3>Javokhir Sindarov Wins 2026 FIDE Candidates Tournament</h3>
-                            <p>Uzbek Grandmaster Javokhir Sindarov clinched the 2026 FIDE Candidates Tournament with a round to spare after drawing against...</p>
-                            <div class="news-meta">
-                                <span class="news-date"><i class="far fa-calendar"></i> April 2024</span>
-                                <span class="news-category">Tournament</span>
-                            </div>
-                            <a href="https://www.fide.com/fide-candidates-2026-eight-contenders-one-dream/?spm=a2ty_o01.29997173.0.0.20ad55fbvdoT0r" class="news-link" target="_blank">Read Full Story <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </article>
-                    <!-- 📰 NEWS CARD 1 - END COPY -->
-                    
-                    <!-- 📰 NEWS CARD 2 - COPY FROM HERE -->
-                    <article class="news-card chess-news-card">
-                        <div class="news-image">
-                            <i class="fas fa-chess-knight news-icon"></i>
-                            <span class="news-source">FIDE</span>
-                        </div>
-                        <div class="news-content">
-                            <h3>New Rating System Updates Released</h3>
-                            <p>FIDE has announced important updates to the Elo rating calculation system, affecting player rankings worldwide...</p>
-                            <div class="news-meta">
-                                <span class="news-date"><i class="far fa-calendar"></i> April 2024</span>
-                                <span class="news-category">Updates</span>
-                            </div>
-                            <a href="https://fide.com" class="news-link" target="_blank">Read Full Story <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </article>
-                    <!-- 📰 NEWS CARD 2 - END COPY -->
-                    
-                    <!-- 📰 NEWS CARD 3 - COPY FROM HERE -->
-                    <article class="news-card chess-news-card">
-                        <div class="news-image">
-                            <i class="fas fa-chess-board news-icon"></i>
-                            <span class="news-source">Chess24</span>
-                        </div>
-                        <div class="news-content">
-                            <h3>Vaishali Rameshbabu Wins Women's Candidates; Set to Challenge Ju Wenjun</h3>
-                            <p>24-year-old Indian GM Vaishali Rameshbabu secured victory in the 2026 FIDE Women's Candidates Tournament with a final-round win over...</p>
-                            <div class="news-meta">
-                                <span class="news-date"><i class="far fa-calendar"></i> April 2024</span>
-                                <span class="news-category">Results</span>
-                            </div>
-                            <a href="https://www.chess.com/news?spm=a2ty_o01.29997173.0.0.20ad55fbvdoT0r" class="news-link" target="_blank">Read Full Story <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </article>
-                    <!-- 📰 NEWS CARD 3 - END COPY -->
-                    
-                    <!-- 📰 TO ADD MORE NEWS: Copy any card above, paste below, and edit the content! -->
-                    
-                </div>
-                
-                <div class="section-footer">
-                    <a href="https://chess.com/news" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-globe"></i> More Chess News
-                    </a>
-                </div>
-            </section>
-            
-            <!-- Main Section: Upcoming Events Preview -->
+            <!-- Upcoming Events Preview (Dynamic from Google Sheets) -->
             <section class="main-section">
                 <div class="section-header">
                     <h2>Upcoming Events Preview</h2>
                     <p>Don't miss these exciting events happening soon</p>
                 </div>
                 
-                <div class="events-preview">
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="event-day">20</span>
-                            <span class="event-month">JUN</span>
-                        </div>
-                        <div class="event-info">
-                            <h3>Beginner Workshop</h3>
-                            <p><i class="far fa-clock"></i> 2:00 PM - 5:00 PM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Main Hall</p>
-                        </div>
-                        <a href="events.html" class="event-btn">Details</a>
-                    </div>
-                    
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="event-day">25</span>
-                            <span class="event-month">JUN</span>
-                        </div>
-                        <div class="event-info">
-                            <h3>Monthly Tournament</h3>
-                            <p><i class="far fa-clock"></i> 10:00 AM - 6:00 PM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Competition Arena</p>
-                        </div>
-                        <a href="tournament.html" class="event-btn">Details</a>
-                    </div>
-                    
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="event-day">30</span>
-                            <span class="event-month">JUN</span>
-                        </div>
-                        <div class="event-info">
-                            <h3>Expert Talk Series</h3>
-                            <p><i class="far fa-clock"></i> 7:00 PM - 9:00 PM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Conference Room</p>
-                        </div>
-                        <a href="events.html" class="event-btn">Details</a>
-                    </div>
+                <!-- Loading State -->
+                <div id="home-events-loading" class="events-loading-home">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading upcoming events...</p>
+                </div>
+                
+                <!-- Error State -->
+                <div id="home-events-error" class="events-error-home" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Unable to load events. Please try again later.</p>
+                </div>
+                
+                <!-- Empty State -->
+                <div id="home-events-empty" class="events-empty-home" style="display: none;">
+                    <i class="fas fa-calendar-times"></i>
+                    <p>No upcoming events scheduled. Check back soon!</p>
+                </div>
+                
+                <!-- Events Preview Container -->
+                <div id="home-events-preview" class="events-preview-home" style="display: none;">
+                    <!-- Events will be dynamically inserted here -->
                 </div>
                 
                 <div class="section-footer">
                     <a href="events.html" class="btn btn-outline">View All Events</a>
+                </div>
+                
+                <!-- Hidden: Google Apps Script URL -->
+                <input type="hidden" id="home-events-api-url" value="https://script.google.com/macros/s/AKfycbx1sUtd2vNkX4rcMFfUZi7b3Qu_0nyY66i8g1hDPfOXEszmdCHkExB8lRSNnWsj_Kic_w/exec">
+            </section>
+            
+            <!-- Main Section: Latest News -->
+            <section class="main-section">
+                <div class="section-header">
+                    <h2>Latest News & Updates</h2>
+                    <p>Stay informed about our latest activities and announcements</p>
+                </div>
+                
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">15</span>
+                            <span class="month">June</span>
+                        </div>
+                        <div class="news-content">
+                            <h3>Summer Tournament Registration Open</h3>
+                            <p>Registration for our annual summer tournament is now open. Early bird discounts available until June 30.</p>
+                            <a href="tournament.html" class="news-link">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">10</span>
+                            <span class="month">June</span>
+                        </div>
+                        <div class="news-content">
+                            <h3>New Learning Resources Added</h3>
+                            <p>We've added new tutorials and guides to our learning section. Perfect for beginners and advanced members alike.</p>
+                            <a href="learn.html" class="news-link">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">05</span>
+                            <span class="month">June</span>
+                        </div>
+                        <div class="news-content">
+                            <h3>Member Meetup Success</h3>
+                            <p>Our recent member meetup was a great success with over 100 participants. Check out photos from the event.</p>
+                            <a href="events.html" class="news-link">Read More</a>
+                        </div>
+                    </article>
                 </div>
             </section>
         </div>
@@ -258,7 +215,7 @@
                             <a href="#"><i class="fab fa-discord"></i></a>
                         </div>
                         <p class="contact-info">
-                            <i class="fas fa-envelope"></i> learn@chessplayers.com<br>
+                            <i class="fas fa-envelope"></i> info@chessplayers.com<br>
                             <i class="fas fa-phone"></i> (123) 456-7890
                         </p>
                     </div>
@@ -337,7 +294,134 @@
                     link.parentElement.classList.remove('active');
                 }
             });
+            
+            // Load home page events preview
+            loadHomeEvents();
         });
+
+        // ========================================
+        // HOME PAGE EVENTS PREVIEW
+        // Fetches from same Google Sheet as events page
+        // Shows only next 3 upcoming events
+        // ========================================
+        
+        async function loadHomeEvents() {
+            const loadingEl = document.getElementById('home-events-loading');
+            const errorEl = document.getElementById('home-events-error');
+            const emptyEl = document.getElementById('home-events-empty');
+            const previewEl = document.getElementById('home-events-preview');
+            const apiUrl = document.getElementById('home-events-api-url')?.value;
+            
+            // Show loading, hide others
+            loadingEl.style.display = 'flex';
+            errorEl.style.display = 'none';
+            emptyEl.style.display = 'none';
+            previewEl.style.display = 'none';
+            
+            // Check if API URL is configured
+            if (!apiUrl || apiUrl.includes('PASTE_YOUR')) {
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'flex';
+                return;
+            }
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (!data.success || !data.events || data.events.length === 0) {
+                    loadingEl.style.display = 'none';
+                    emptyEl.style.display = 'flex';
+                    return;
+                }
+                
+                // Sort events by date and get next 3
+                const events = data.events
+                    .sort((a, b) => parseDate(a.date) - parseDate(b.date))
+                    .slice(0, 3);
+                
+                // Render events preview
+                renderHomeEventsPreview(events, previewEl);
+                
+                // Show preview, hide loading
+                loadingEl.style.display = 'none';
+                previewEl.style.display = 'grid';
+                
+            } catch (error) {
+                console.error('Error loading home events:', error);
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'flex';
+            }
+        }
+        
+        function renderHomeEventsPreview(events, container) {
+            container.innerHTML = '';
+            
+            events.forEach(event => {
+                const eventCard = createHomeEventCard(event);
+                container.appendChild(eventCard);
+            });
+        }
+        
+        function createHomeEventCard(event) {
+            const div = document.createElement('div');
+            div.className = 'event-preview-card';
+            
+            // Parse date
+            const dateObj = parseDate(event.date);
+            const day = dateObj.getDate();
+            const month = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+            
+            // Format time (if available in format field or description)
+            let timeText = 'TBA';
+            if (event.format && event.format.includes('AM') || event.format.includes('PM')) {
+                timeText = event.format;
+            } else if (event.description) {
+                const timeMatch = event.description.match(/(\d{1,2}:\d{2}\s*(?:AM|PM)\s*-\s*\d{1,2}:\d{2}\s*(?:AM|PM))/i);
+                if (timeMatch) {
+                    timeText = timeMatch[1];
+                }
+            }
+            
+            // Build HTML
+            div.innerHTML = `
+                <div class="event-preview-date">
+                    <span class="event-preview-day">${day}</span>
+                    <span class="event-preview-month">${month}</span>
+                </div>
+                <div class="event-preview-info">
+                    <h3>${event.title}</h3>
+                    <div class="event-preview-meta">
+                        <span class="event-preview-time">
+                            <i class="far fa-clock"></i> ${timeText}
+                        </span>
+                        <span class="event-preview-location">
+                            <i class="fas fa-map-marker-alt"></i> ${event.location}
+                        </span>
+                    </div>
+                </div>
+                <a href="events.html" class="event-preview-btn">Details</a>
+            `;
+            
+            return div;
+        }
+        
+        // Helper function to parse dates in various formats
+        function parseDate(dateStr) {
+            if (!dateStr) return new Date(0);
+            
+            // Handle date ranges like "May 16-26, 2026"
+            const rangeMatch = dateStr.match(/([A-Za-z]+)\s+(\d{1,2})-?(\d{1,2})?,?\s*(\d{4})/);
+            if (rangeMatch) {
+                const monthName = rangeMatch[1];
+                const day = rangeMatch[2];
+                const year = rangeMatch[4];
+                return new Date(`${monthName} ${day}, ${year}`);
+            }
+            
+            // Try standard date parsing
+            return new Date(dateStr);
+        }
     </script>
 </body>
 </html>
