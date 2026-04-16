@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Home of Chess Players</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-container {
+            padding: 80px 20px 60px;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+        
+        .dashboard-header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .dashboard-welcome h1 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .dashboard-welcome p {
+            color: #7f8c8d;
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .stat-icon.events { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .stat-icon.lessons { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .stat-icon.membership { background: linear-gradient(135deg, #f39c12, #d35400); }
+        
+        .stat-info h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-info p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+        
+        .dashboard-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dashboard-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .profile-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .profile-item i {
+            color: #3498db;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .profile-item div h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .profile-item div p {
+            color: #7f8c8d;
+        }
+        
+        .btn-logout {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-logout:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .loading-dashboard {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .loading-dashboard i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-users"></i>
+                    <h1>HOME OF CHESS<span>PLAYERS</span></h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                        <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="container">
+            <!-- Loading State -->
+            <div id="loading-dashboard" class="loading-dashboard">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading your dashboard...</p>
+            </div>
+            
+            <!-- Dashboard Content (Hidden until loaded) -->
+            <div id="dashboard-content" style="display: none;">
+                <!-- Header -->
+                <div class="dashboard-header">
+                    <div class="dashboard-welcome">
+                        <h1>Welcome back, <span id="member-name">Member</span>! 👋</h1>
+                        <p><span id="member-email">email@example.com</span></p>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </button>
+                </div>
+                
+                <!-- Stats -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon events">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="events-count">0</h3>
+                            <p>Events Registered</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon lessons">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="lessons-count">0</h3>
+                            <p>Lessons Completed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon membership">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="membership-type">Free</h3>
+                            <p>Membership Plan</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profile Information -->
+                <div class="dashboard-section">
+                    <h2><i class="fas fa-user"></i> My Profile</h2>
+                    <div class="profile-info">
+                        <div class="profile-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <h4>Full Name</h4>
+                                <p id="profile-name">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p id="profile-email">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p id="profile-phone">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-item">
+                            <i class="fas fa-chess"></i>
+                            <div>
+                                <h4>Skill Level</h4>
+                                <p id="profile-skill">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-item">
+                            <i class="fas fa-calendar"></i>
+                            <div>
+                                <h4>Join Date</h4>
+                                <p id="profile-join-date">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Status</h4>
+                                <p id="profile-status">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="dashboard-section">
+                    <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="events.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i> Browse Events
+                        </a>
+                        <a href="learn.html" class="btn btn-primary">
+                            <i class="fas fa-graduation-cap"></i> Start Learning
+                        </a>
+                        <a href="tournament.html" class="btn btn-primary">
+                            <i class="fas fa-trophy"></i> Join Tournament
+                        </a>
+                        <a href="membership.html" class="btn btn-outline">
+                            <i class="fas fa-crown"></i> Upgrade Membership
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // PASTE YOUR FIREBASE CONFIG HERE (same as other files)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "home-of-chess-players.firebaseapp.com",
+            projectId: "home-of-chess-players",
+            storageBucket: "home-of-chess-players.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        
+        // Check authentication
+        auth.onAuthStateChanged(async user => {
+            if (!user) {
+                // Not logged in - redirect to login
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Logged in - load dashboard
+            try {
+                // Get member data from Firestore
+                const doc = await db.collection('members').doc(user.uid).get();
+                
+                if (doc.exists) {
+                    const data = doc.data();
+                    
+                    // Populate dashboard
+                    document.getElementById('member-name').textContent = data.fullname || 'Member';
+                    document.getElementById('member-email').textContent = user.email;
+                    document.getElementById('profile-name').textContent = data.fullname || '-';
+                    document.getElementById('profile-email').textContent = user.email;
+                    document.getElementById('profile-phone').textContent = data.phone || 'Not provided';
+                    document.getElementById('profile-skill').textContent = data.skillLevel || '-';
+                    document.getElementById('membership-type').textContent = data.membership === 'premium' ? 'Premium' : 'Free';
+                    document.getElementById('profile-status').textContent = data.status || 'Active';
+                    
+                    // Format join date
+                    if (data.joinDate) {
+                        const joinDate = data.joinDate.toDate();
+                        document.getElementById('profile-join-date').textContent = joinDate.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    }
+                    
+                    // Show dashboard, hide loading
+                    document.getElementById('loading-dashboard').style.display = 'none';
+                    document.getElementById('dashboard-content').style.display = 'block';
+                } else {
+                    // No member data found
+                    alert('Member profile not found. Please contact support.');
+                    logout();
+                }
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                alert('Failed to load dashboard. Please try again.');
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            auth.signOut().then(() => {
+                window.location.href = 'home.html';
+            }).catch(error => {
+                console.error('Logout error:', error);
+                alert('Failed to sign out. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

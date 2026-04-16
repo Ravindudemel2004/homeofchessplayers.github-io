@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Home of Chess Players</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .auth-header h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .auth-header p {
+            color: #7f8c8d;
+        }
+        
+        .auth-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .auth-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .auth-form input,
+        .auth-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eaeaea;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .auth-form input:focus,
+        .auth-form select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .auth-form .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        .auth-error {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .auth-success {
+            background: #efe;
+            color: #3c3;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .auth-divider {
+            text-align: center;
+            margin: 25px 0;
+            color: #7f8c8d;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+        }
+        
+        .auth-footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-users"></i>
+                    <h1>HOME OF CHESS<span>PLAYERS</span></h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="membership.html"><i class="fas fa-id-card"></i> Membership</a></li>
+                        <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                        <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="tournament.html"><i class="fas fa-trophy"></i> Tournament</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sign Up Form -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1><i class="fas fa-user-plus"></i> Create Account</h1>
+                <p>Join our chess community today!</p>
+            </div>
+            
+            <div id="signup-error" class="auth-error"></div>
+            <div id="signup-success" class="auth-success"></div>
+            
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="fullname"><i class="fas fa-user"></i> Full Name *</label>
+                    <input type="text" id="fullname" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email Address *</label>
+                    <input type="email" id="email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password *</label>
+                    <input type="password" id="password" required placeholder="Minimum 6 characters" minlength="6">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password *</label>
+                    <input type="password" id="confirm-password" required placeholder="Re-enter password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="phone" placeholder="(123) 456-7890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="skill-level"><i class="fas fa-chess"></i> Chess Skill Level *</label>
+                    <select id="skill-level" required>
+                        <option value="">Select your level</option>
+                        <option value="beginner">Beginner (Just starting)</option>
+                        <option value="intermediate">Intermediate (Know rules, some experience)</option>
+                        <option value="advanced">Advanced (Tournament player)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="membership"><i class="fas fa-id-card"></i> Membership Type *</label>
+                    <select id="membership" required>
+                        <option value="free">Free Member</option>
+                        <option value="premium">Premium Member ($10/month)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+            
+            <div class="auth-divider">OR</div>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Sign In</a></p>
+                <p><a href="home.html">← Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // ========================================
+        // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDiSc1n78BWCClIiWlRKPdJSMNG7GWZ8Ag",
+  authDomain: "home-of-chess-players.firebaseapp.com",
+  projectId: "home-of-chess-players",
+  storageBucket: "home-of-chess-players.firebasestorage.app",
+  messagingSenderId: "966734153213",
+  appId: "1:966734153213:web:b8523fdf90c090f94d8594",
+  measurementId: "G-F86SVSPRWS"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+        // ========================================
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "home-of-chess-players.firebaseapp.com",
+            projectId: "home-of-chess-players",
+            storageBucket: "home-of-chess-players.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        
+        // Sign Up Form Handler
+        document.getElementById('signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const errorDiv = document.getElementById('signup-error');
+            const successDiv = document.getElementById('signup-success');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            
+            // Get form values
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const phone = document.getElementById('phone').value.trim();
+            const skillLevel = document.getElementById('skill-level').value;
+            const membership = document.getElementById('membership').value;
+            
+            // Hide previous messages
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                errorDiv.textContent = 'Passwords do not match!';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+            
+            try {
+                // Create Firebase Auth user
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Save additional user data to Firestore
+                await db.collection('members').doc(user.uid).set({
+                    fullname: fullname,
+                    email: email,
+                    phone: phone || '',
+                    skillLevel: skillLevel,
+                    membership: membership,
+                    joinDate: firebase.firestore.FieldValue.serverTimestamp(),
+                    status: 'active'
+                });
+                
+                // Show success
+                successDiv.textContent = 'Account created successfully! Redirecting to dashboard...';
+                successDiv.style.display = 'block';
+                
+                // Redirect to dashboard after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Signup error:', error);
+                errorDiv.textContent = getErrorMessage(error.code);
+                errorDiv.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+            }
+        });
+        
+        // Helper function to get user-friendly error messages
+        function getErrorMessage(errorCode) {
+            switch(errorCode) {
+                case 'auth/email-already-in-use':
+                    return 'This email is already registered. Please sign in instead.';
+                case 'auth/invalid-email':
+                    return 'Invalid email address.';
+                case 'auth/weak-password':
+                    return 'Password is too weak. Use at least 6 characters.';
+                case 'auth/operation-not-allowed':
+                    return 'Email/password accounts are not enabled.';
+                default:
+                    return 'Failed to create account. Please try again.';
+            }
+        }
+    </script>
+</body>
+</html>
