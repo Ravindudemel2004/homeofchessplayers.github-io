@@ -92,10 +92,17 @@
             display: none;
         }
         
-        .auth-divider {
-            text-align: center;
-            margin: 25px 0;
-            color: #7f8c8d;
+        .debug-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .debug-box strong {
+            color: #856404;
         }
         
         .auth-footer {
@@ -108,16 +115,6 @@
             color: #3498db;
             text-decoration: none;
             font-weight: 600;
-        }
-        
-        .debug-info {
-            background: #fff3cd;
-            color: #856404;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-            border: 1px solid #ffc107;
         }
     </style>
 </head>
@@ -157,11 +154,11 @@
             </div>
             
             <!-- Debug Info -->
-            <div class="debug-info">
-                <strong>Debug:</strong> 
-                Firebase: <span id="fb-status">Loading...</span> | 
-                Auth: <span id="auth-status">Loading...</span> | 
-                Firestore: <span id="fs-status">Loading...</span>
+            <div class="debug-box">
+                <strong>System Status:</strong><br>
+                Firebase: <span id="fb-status">⏳ Loading...</span><br>
+                Auth: <span id="auth-status">⏳ Loading...</span><br>
+                Firestore: <span id="fs-status">⏳ Loading...</span>
             </div>
             
             <div id="signup-error" class="auth-error"></div>
@@ -216,8 +213,6 @@
                 </button>
             </form>
             
-            <div class="auth-divider">OR</div>
-            
             <div class="auth-footer">
                 <p>Already have an account? <a href="login.html">Sign In</a></p>
                 <p><a href="home.html">← Back to Home</a></p>
@@ -245,6 +240,8 @@
         const fbStatus = document.getElementById('fb-status');
         const authStatus = document.getElementById('auth-status');
         const fsStatus = document.getElementById('fs-status');
+        const errorDiv = document.getElementById('signup-error');
+        const successDiv = document.getElementById('signup-success');
 
         try {
             // Initialize Firebase
@@ -252,26 +249,28 @@
             const auth = firebase.auth();
             const db = firebase.firestore();
             
-            fbStatus.textContent = '✅';
-            authStatus.textContent = '✅';
-            fsStatus.textContent = '✅';
+            // Update debug status
+            fbStatus.textContent = '✅ OK';
+            fbStatus.style.color = '#27ae60';
+            authStatus.textContent = '✅ OK';
+            authStatus.style.color = '#27ae60';
+            fsStatus.textContent = '✅ OK';
+            fsStatus.style.color = '#27ae60';
             
-            // Check if user is already logged in
+            // Check if already logged in
             auth.onAuthStateChanged(user => {
                 if (user) {
                     window.location.href = 'dashboard.html';
                 }
             });
 
-            // Sign Up Form Handler
+            // Form submission
             document.getElementById('signup-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
-                const errorDiv = document.getElementById('signup-error');
-                const successDiv = document.getElementById('signup-success');
                 const submitBtn = this.querySelector('button[type="submit"]');
                 
-                // Get form values
+                // Get values
                 const fullname = document.getElementById('fullname').value.trim();
                 const email = document.getElementById('email').value.trim();
                 const password = document.getElementById('password').value;
@@ -280,32 +279,32 @@
                 const skillLevel = document.getElementById('skill-level').value;
                 const membership = document.getElementById('membership').value;
                 
-                // Hide previous messages
+                // Reset messages
                 errorDiv.style.display = 'none';
                 successDiv.style.display = 'none';
                 
-                // Validate passwords match
+                // Validate passwords
                 if (password !== confirmPassword) {
                     errorDiv.textContent = '❌ Passwords do not match!';
                     errorDiv.style.display = 'block';
                     return;
                 }
                 
-                // Show loading state
+                // Show loading
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
                 
-                console.log('Starting signup process for:', email);
+                console.log('📝 Starting signup for:', email);
                 
                 try {
-                    // Step 1: Create Firebase Auth user
-                    console.log('Step 1: Creating auth user...');
+                    // Step 1: Create Auth User
+                    console.log('1️⃣ Creating authentication user...');
                     const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                     const user = userCredential.user;
                     console.log('✅ Auth user created:', user.uid);
                     
-                    // Step 2: Save to Firestore
-                    console.log('Step 2: Saving to Firestore...');
+                    // Step 2: Create Firestore Document
+                    console.log('2️⃣ Creating Firestore profile...');
                     await db.collection('members').doc(user.uid).set({
                         fullname: fullname,
                         email: email,
@@ -313,69 +312,54 @@
                         skillLevel: skillLevel,
                         membership: membership,
                         joinDate: firebase.firestore.FieldValue.serverTimestamp(),
-                        status: 'active'
+                        status: 'active',
+                        createdAt: new Date().toISOString()
                     });
-                    console.log('✅ Firestore document created');
+                    console.log('✅ Firestore profile created');
                     
-                    // Step 3: Verify document was created
-                    console.log('Step 3: Verifying document...');
+                    // Step 3: Verify
+                    console.log('3️⃣ Verifying profile...');
                     const doc = await db.collection('members').doc(user.uid).get();
                     if (!doc.exists) {
-                        throw new Error('Firestore document was not created');
+                        throw new Error('Profile verification failed');
                     }
-                    console.log('✅ Document verified');
+                    console.log('✅ Profile verified');
                     
-                    // Show success
-                    successDiv.textContent = '✅ Account created successfully! Redirecting to dashboard...';
+                    // Success!
+                    successDiv.textContent = '✅ Account created successfully! Redirecting...';
                     successDiv.style.display = 'block';
                     
-                    // Redirect to dashboard after 2 seconds
                     setTimeout(() => {
-                        console.log('Redirecting to dashboard...');
                         window.location.href = 'dashboard.html';
-                    }, 2000);
+                    }, 1500);
                     
                 } catch (error) {
-                    console.error('❌ Signup error:', error.code, error.message);
+                    console.error('❌ Signup error:', error);
                     
-                    let errorMessage = getErrorMessage(error.code);
-                    
-                    // If Firestore failed but Auth succeeded, warn user
-                    if (error.code === 'firestore/unavailable' || error.code === 'firestore/permission-denied') {
-                        errorMessage += '<br><br>⚠️ Account created but profile save failed. Please contact support.';
+                    let errorMsg = '❌ ';
+                    if (error.code === 'auth/email-already-in-use') {
+                        errorMsg += 'This email is already registered. Please sign in instead.';
+                    } else if (error.code === 'auth/weak-password') {
+                        errorMsg += 'Password must be at least 6 characters.';
+                    } else if (error.code === 'firestore/permission-denied') {
+                        errorMsg += 'Firestore permission denied. Check security rules.';
+                    } else {
+                        errorMsg += 'Failed to create account. Check console for details.';
                     }
                     
-                    errorDiv.innerHTML = errorMessage;
+                    errorDiv.textContent = errorMsg;
                     errorDiv.style.display = 'block';
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
                 }
             });
-
-            // Helper function
-            function getErrorMessage(errorCode) {
-                switch(errorCode) {
-                    case 'auth/email-already-in-use':
-                        return '❌ This email is already registered. Please sign in instead.';
-                    case 'auth/invalid-email':
-                        return '❌ Invalid email address.';
-                    case 'auth/weak-password':
-                        return '❌ Password is too weak. Use at least 6 characters.';
-                    case 'auth/operation-not-allowed':
-                        return '❌ Email/password accounts are not enabled in Firebase.';
-                    default:
-                        return '❌ Failed to create account. Please try again.';
-                }
-            }
-
-        } catch (error) {
-            console.error('Firebase initialization error:', error);
-            fbStatus.textContent = '❌';
-            authStatus.textContent = '❌';
-            fsStatus.textContent = '❌';
             
-            const errorDiv = document.getElementById('signup-error');
-            errorDiv.innerHTML = `<strong>Firebase Error:</strong> ${error.message}<br><br>Check console (F12) for details.`;
+        } catch (error) {
+            console.error('Firebase init error:', error);
+            fbStatus.textContent = '❌ Error';
+            fbStatus.style.color = '#e74c3c';
+            
+            errorDiv.innerHTML = `<strong>Firebase Error:</strong> ${error.message}<br>Check console (F12) for details.`;
             errorDiv.style.display = 'block';
         }
     </script>
